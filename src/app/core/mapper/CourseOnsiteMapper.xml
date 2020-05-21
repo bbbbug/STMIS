@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="app.core.mapper.CourseOnsiteMapper">
+  <resultMap id="BaseResultMap" type="app.core.po.CourseOnsite">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PXKC" jdbcType="VARCHAR" property="pxkc" />
+    <result column="PXDD" jdbcType="VARCHAR" property="pxdd" />
+    <result column="PXFS" jdbcType="VARCHAR" property="pxfs" />
+    <result column="SKLS" jdbcType="VARCHAR" property="skls" />
+    <result column="SKXF" jdbcType="DOUBLE" property="skxf" />
+    <result column="CJRS" jdbcType="VARCHAR" property="cjrs" />
+    <result column="PXZL" jdbcType="VARCHAR" property="pxzl" />
+    <result column="PXNR" jdbcType="VARCHAR" property="pxnr" />
+    <result column="PXJLR" jdbcType="VARCHAR" property="pxjlr" />
+    <result column="PXSJ" jdbcType="TIMESTAMP" property="pxsj" />
+    <result column="PXJLSJ" jdbcType="VARCHAR" property="pxjlsj" />
+    <result column="PXZZBM" jdbcType="VARCHAR" property="pxzzbm" />
+    <result column="BXZD1" jdbcType="VARCHAR" property="bxzd1" />
+    <result column="BXZD2" jdbcType="VARCHAR" property="bxzd2" />
+    <result column="BXZD3" jdbcType="VARCHAR" property="bxzd3" />
+    <result column="BXZD4" jdbcType="VARCHAR" property="bxzd4" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, PXKC, PXDD, PXFS, SKLS, SKXF, CJRS, PXZL, PXNR, PXJLR, PXSJ, PXJLSJ, PXZZBM, 
+    BXZD1, BXZD2, BXZD3, BXZD4
+  </sql>
+  
+   	<!-- 自定义 -->
+	<select id="getAllCourseOnsite" resultType="CourseOnsite"><!-- 备选字段1为正在开启的课程类别 -->
+		select * from course_onsite where bxzd1=0 or bxzd1 is null order by ID 
+	</select>
+	<update id="delCourseOnsite" parameterType="CourseOnsite">
+		update course_onsite set bxzd1 = 1 where ID = #{id}
+	</update>
+  
+  <!-- 自动生成 -->
+  <select id="selectByExample" parameterType="app.core.po.CourseOnsiteExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_onsite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course_onsite
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course_onsite
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.CourseOnsiteExample">
+    delete from course_onsite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.CourseOnsite">
+    insert into course_onsite (ID, PXKC, PXDD, 
+      PXFS, SKLS, SKXF, CJRS, 
+      PXZL, PXNR, PXJLR, 
+      PXSJ, PXJLSJ, PXZZBM, 
+      BXZD1, BXZD2, BXZD3, 
+      BXZD4)
+    values (#{id,jdbcType=INTEGER}, #{pxkc,jdbcType=VARCHAR}, #{pxdd,jdbcType=VARCHAR}, 
+      #{pxfs,jdbcType=VARCHAR}, #{skls,jdbcType=VARCHAR}, #{skxf,jdbcType=DOUBLE}, #{cjrs,jdbcType=VARCHAR}, 
+      #{pxzl,jdbcType=VARCHAR}, #{pxnr,jdbcType=VARCHAR}, #{pxjlr,jdbcType=VARCHAR}, 
+      #{pxsj,jdbcType=TIMESTAMP}, #{pxjlsj,jdbcType=VARCHAR}, #{pxzzbm,jdbcType=VARCHAR}, 
+      #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR}, #{bxzd3,jdbcType=VARCHAR}, 
+      #{bxzd4,jdbcType=VARCHAR})
+  </insert>
+  <!-- 返回新增主键 修改时间2019.7.10 -->
+  <insert id="insertSelective" parameterType="app.core.po.CourseOnsite" useGeneratedKeys="true" keyProperty="id">
+    insert into course_onsite
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="pxkc != null">
+        PXKC,
+      </if>
+      <if test="pxdd != null">
+        PXDD,
+      </if>
+      <if test="pxfs != null">
+        PXFS,
+      </if>
+      <if test="skls != null">
+        SKLS,
+      </if>
+      <if test="skxf != null">
+        SKXF,
+      </if>
+      <if test="cjrs != null">
+        CJRS,
+      </if>
+      <if test="pxzl != null">
+        PXZL,
+      </if>
+      <if test="pxnr != null">
+        PXNR,
+      </if>
+      <if test="pxjlr != null">
+        PXJLR,
+      </if>
+      <if test="pxsj != null">
+        PXSJ,
+      </if>
+      <if test="pxjlsj != null">
+        PXJLSJ,
+      </if>
+      <if test="pxzzbm != null">
+        PXZZBM,
+      </if>
+      <if test="bxzd1 != null">
+        BXZD1,
+      </if>
+      <if test="bxzd2 != null">
+        BXZD2,
+      </if>
+      <if test="bxzd3 != null">
+        BXZD3,
+      </if>
+      <if test="bxzd4 != null">
+        BXZD4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pxkc != null">
+        #{pxkc,jdbcType=VARCHAR},
+      </if>
+      <if test="pxdd != null">
+        #{pxdd,jdbcType=VARCHAR},
+      </if>
+      <if test="pxfs != null">
+        #{pxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="skls != null">
+        #{skls,jdbcType=VARCHAR},
+      </if>
+      <if test="skxf != null">
+        #{skxf,jdbcType=DOUBLE},
+      </if>
+      <if test="cjrs != null">
+        #{cjrs,jdbcType=VARCHAR},
+      </if>
+      <if test="pxzl != null">
+        #{pxzl,jdbcType=VARCHAR},
+      </if>
+      <if test="pxnr != null">
+        #{pxnr,jdbcType=VARCHAR},
+      </if>
+      <if test="pxjlr != null">
+        #{pxjlr,jdbcType=VARCHAR},
+      </if>
+      <if test="pxsj != null">
+        #{pxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pxjlsj != null">
+        #{pxjlsj,jdbcType=VARCHAR},
+      </if>
+      <if test="pxzzbm != null">
+        #{pxzzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null">
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null">
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null">
+        #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null">
+        #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.CourseOnsiteExample" resultType="java.lang.Integer">
+    select count(*) from course_onsite
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update course_onsite
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pxkc != null">
+        PXKC = #{record.pxkc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxdd != null">
+        PXDD = #{record.pxdd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxfs != null">
+        PXFS = #{record.pxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skls != null">
+        SKLS = #{record.skls,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skxf != null">
+        SKXF = #{record.skxf,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cjrs != null">
+        CJRS = #{record.cjrs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxzl != null">
+        PXZL = #{record.pxzl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxnr != null">
+        PXNR = #{record.pxnr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxjlr != null">
+        PXJLR = #{record.pxjlr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxsj != null">
+        PXSJ = #{record.pxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pxjlsj != null">
+        PXJLSJ = #{record.pxjlsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pxzzbm != null">
+        PXZZBM = #{record.pxzzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd1 != null">
+        BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null">
+        BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd3 != null">
+        BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd4 != null">
+        BXZD4 = #{record.bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update course_onsite
+    set ID = #{record.id,jdbcType=INTEGER},
+      PXKC = #{record.pxkc,jdbcType=VARCHAR},
+      PXDD = #{record.pxdd,jdbcType=VARCHAR},
+      PXFS = #{record.pxfs,jdbcType=VARCHAR},
+      SKLS = #{record.skls,jdbcType=VARCHAR},
+      SKXF = #{record.skxf,jdbcType=DOUBLE},
+      CJRS = #{record.cjrs,jdbcType=VARCHAR},
+      PXZL = #{record.pxzl,jdbcType=VARCHAR},
+      PXNR = #{record.pxnr,jdbcType=VARCHAR},
+      PXJLR = #{record.pxjlr,jdbcType=VARCHAR},
+      PXSJ = #{record.pxsj,jdbcType=TIMESTAMP},
+      PXJLSJ = #{record.pxjlsj,jdbcType=VARCHAR},
+      PXZZBM = #{record.pxzzbm,jdbcType=VARCHAR},
+      BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{record.bxzd4,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.CourseOnsite">
+    update course_onsite
+    <set>
+      <if test="pxkc != null">
+        PXKC = #{pxkc,jdbcType=VARCHAR},
+      </if>
+      <if test="pxdd != null">
+        PXDD = #{pxdd,jdbcType=VARCHAR},
+      </if>
+      <if test="pxfs != null">
+        PXFS = #{pxfs,jdbcType=VARCHAR},
+      </if>
+      <if test="skls != null">
+        SKLS = #{skls,jdbcType=VARCHAR},
+      </if>
+      <if test="skxf != null">
+        SKXF = #{skxf,jdbcType=DOUBLE},
+      </if>
+      <if test="cjrs != null">
+        CJRS = #{cjrs,jdbcType=VARCHAR},
+      </if>
+      <if test="pxzl != null">
+        PXZL = #{pxzl,jdbcType=VARCHAR},
+      </if>
+      <if test="pxnr != null">
+        PXNR = #{pxnr,jdbcType=VARCHAR},
+      </if>
+      <if test="pxjlr != null">
+        PXJLR = #{pxjlr,jdbcType=VARCHAR},
+      </if>
+      <if test="pxsj != null">
+        PXSJ = #{pxsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pxjlsj != null">
+        PXJLSJ = #{pxjlsj,jdbcType=VARCHAR},
+      </if>
+      <if test="pxzzbm != null">
+        PXZZBM = #{pxzzbm,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null">
+        BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null">
+        BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null">
+        BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null">
+        BXZD4 = #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.CourseOnsite">
+    update course_onsite
+    set PXKC = #{pxkc,jdbcType=VARCHAR},
+      PXDD = #{pxdd,jdbcType=VARCHAR},
+      PXFS = #{pxfs,jdbcType=VARCHAR},
+      SKLS = #{skls,jdbcType=VARCHAR},
+      SKXF = #{skxf,jdbcType=DOUBLE},
+      CJRS = #{cjrs,jdbcType=VARCHAR},
+      PXZL = #{pxzl,jdbcType=VARCHAR},
+      PXNR = #{pxnr,jdbcType=VARCHAR},
+      PXJLR = #{pxjlr,jdbcType=VARCHAR},
+      PXSJ = #{pxsj,jdbcType=TIMESTAMP},
+      PXJLSJ = #{pxjlsj,jdbcType=VARCHAR},
+      PXZZBM = #{pxzzbm,jdbcType=VARCHAR},
+      BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{bxzd4,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

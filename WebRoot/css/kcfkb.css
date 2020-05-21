@@ -1,0 +1,1773 @@
+<!--table
+ {mso-displayed-decimal-separator:"\.";
+ mso-displayed-thousand-separator:"\,";}
+@page
+ {
+ mso-header-data:"";
+ mso-footer-data:"";
+ margin:0.55in 0.38in 0.59in 0.75in;
+ mso-header-margin:0.35in;
+ mso-footer-margin:0.39in;
+ mso-page-orientation:Portrait;
+ }
+tr
+ {mso-height-source:auto;
+ mso-ruby-visibility:none;}
+col
+ {mso-width-source:auto;
+ mso-ruby-visibility:none;}
+br
+ {mso-data-placement:same-cell;}
+ruby
+ {ruby-align:left;}
+.style0
+ {
+ mso-number-format:General;
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:12pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border:none;
+ mso-protection:locked visible;
+ mso-style-name:Normal;
+ mso-style-id:0;}
+.font0
+ {
+ color:#000000;
+ font-size:12pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font1
+ {
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif"; }
+.font2
+ {
+ color:#000000;
+ font-size:14pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font3
+ {
+ color:#000000;
+ font-size:20pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font4
+ {
+ color:#000000;
+ font-size:9pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font5
+ {
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font6
+ {
+ color:#000000;
+ font-size:10pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font7
+ {
+ color:#000000;
+ font-size:10pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"楷体","monospace"; }
+.font8
+ {
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font9
+ {
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font10
+ {
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font11
+ {
+ color:#44546A;
+ font-size:13pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font12
+ {
+ color:#9C0006;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font13
+ {
+ color:#000000;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font14
+ {
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font15
+ {
+ color:#7F7F7F;
+ font-size:11pt;
+ font-weight:400;
+ font-style:italic;
+ font-family:"宋体","sans-serif"; }
+.font16
+ {
+ color:#3F3F76;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font17
+ {
+ color:#FA7D00;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font18
+ {
+ color:#FA7D00;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font19
+ {
+ color:#44546A;
+ font-size:18pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font20
+ {
+ color:#006100;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font21
+ {
+ color:#44546A;
+ font-size:15pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font22
+ {
+ color:#0000FF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ text-decoration:underline;
+ font-family:"宋体","sans-serif"; }
+.font23
+ {
+ color:#800080;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ text-decoration:underline;
+ font-family:"宋体","sans-serif"; }
+.font24
+ {
+ color:#44546A;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font25
+ {
+ color:#3F3F3F;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font26
+ {
+ color:#FF0000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+.font27
+ {
+ color:#9C6500;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif"; }
+td
+ {mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:general;
+
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:12pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border:none;
+ mso-protection:locked visible;
+ mso-ignore:padding;}
+.style0
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ font-size:12pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"Normal";
+ }
+.style1
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style2
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style3
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style4
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style5
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style6
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style7
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style8
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style9
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style10
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style11
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style12
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style13
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.style14
+ {
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ }
+.x15
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ font-size:12pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ }
+.style16
+ {
+ mso-number-format:"0%";
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"Percent";
+ }
+.style17
+ {
+ mso-number-format:"_ \0022¥\0022* \#\,\#\#0\.00_ \;_ \0022¥\0022* -\#\,\#\#0\.00_ \;_ \0022¥\0022* \0022-\0022??_ \;_ \@_ ";
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"Currency";
+ }
+.style18
+ {
+ mso-number-format:"_ \0022¥\0022* \#\,\#\#0_ \;_ \0022¥\0022* -\#\,\#\#0_ \;_ \0022¥\0022* \0022-\0022_ \;_ \@_ ";
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"Currency [0]";
+ }
+.style19
+ {
+ mso-number-format:"_ * \#\,\#\#0\.00_ \;_ * -\#\,\#\#0\.00_ \;_ * \0022-\0022??_ \;_ \@_ ";
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"Comma";
+ }
+.style20
+ {
+ mso-number-format:"_ * \#\,\#\#0_ \;_ * -\#\,\#\#0_ \;_ * \0022-\0022_ \;_ \@_ ";
+ text-align:general;
+ vertical-align:middle;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"Arial","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"Comma [0]";
+ }
+.style21
+ {
+ mso-number-format:"_ \0022￥\0022* \#\,\#\#0_ \;_ \0022￥\0022* \\-\#\,\#\#0_ \;_ \0022￥\0022* \0022-\0022_ \;_ \@_ ";
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"货币[0]";
+ }
+.style22
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#EDEDED;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"20% - 强调文字颜色 3";
+ }
+.style23
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#FFCC99;
+ mso-pattern:auto none;
+ color:#3F3F76;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid #7F7F7F;
+ border-right:1px solid #7F7F7F;
+ border-bottom:1px solid #7F7F7F;
+ border-left:1px solid #7F7F7F;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"输入";
+ }
+.style24
+ {
+ mso-number-format:"_ \0022￥\0022* \#\,\#\#0\.00_ \;_ \0022￥\0022* \\-\#\,\#\#0\.00_ \;_ \0022￥\0022* \0022-\0022??_ \;_ \@_ ";
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"货币";
+ }
+.style25
+ {
+ mso-number-format:"_ * \#\,\#\#0_ \;_ * \\-\#\,\#\#0_ \;_ * \0022-\0022_ \;_ \@_ ";
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"千位分隔[0]";
+ }
+.style26
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#DBDBDB;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"40% - 强调文字颜色 3";
+ }
+.style27
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#FFC7CE;
+ mso-pattern:auto none;
+ color:#9C0006;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"差";
+ }
+.style28
+ {
+ mso-number-format:"_ * \#\,\#\#0\.00_ \;_ * \\-\#\,\#\#0\.00_ \;_ * \0022-\0022??_ \;_ \@_ ";
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"千位分隔";
+ }
+.style29
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#C9C9C9;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"60% - 强调文字颜色 3";
+ }
+.style30
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#0000FF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ text-decoration:underline;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"超链接";
+ }
+.style31
+ {
+ mso-number-format:"0%";
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"百分比";
+ }
+.style32
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#800080;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ text-decoration:underline;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"已访问的超链接";
+ }
+.style33
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#FFFFCC;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid #B2B2B2;
+ border-right:1px solid #B2B2B2;
+ border-bottom:1px solid #B2B2B2;
+ border-left:1px solid #B2B2B2;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"注释";
+ }
+.style34
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#F4B183;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"60% - 强调文字颜色 2";
+ }
+.style35
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#44546A;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"标题 4";
+ }
+.style36
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#FF0000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"警告文本";
+ }
+.style37
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#44546A;
+ font-size:18pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"标题";
+ }
+.style38
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#7F7F7F;
+ font-size:11pt;
+ font-weight:400;
+ font-style:italic;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"解释性文本";
+ }
+.style39
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#44546A;
+ font-size:15pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:none;
+ border-right:none;
+ border-bottom:2px solid #5B9BD5;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"标题 1";
+ }
+.style40
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#44546A;
+ font-size:13pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:none;
+ border-right:none;
+ border-bottom:2px solid #5B9BD5;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"标题 2";
+ }
+.style41
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#9DC3E6;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"60% - 强调文字颜色 1";
+ }
+.style42
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#44546A;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:none;
+ border-right:none;
+ border-bottom:2px solid #ADCDEA;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"标题 3";
+ }
+.style43
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#FFD966;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"60% - 强调文字颜色 4";
+ }
+.style44
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#F2F2F2;
+ mso-pattern:auto none;
+ color:#3F3F3F;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid #3F3F3F;
+ border-right:1px solid #3F3F3F;
+ border-bottom:1px solid #3F3F3F;
+ border-left:1px solid #3F3F3F;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"输出";
+ }
+.style45
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#F2F2F2;
+ mso-pattern:auto none;
+ color:#FA7D00;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid #7F7F7F;
+ border-right:1px solid #7F7F7F;
+ border-bottom:1px solid #7F7F7F;
+ border-left:1px solid #7F7F7F;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"计算";
+ }
+.style46
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#A5A5A5;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:4px double #3F3F3F;
+ border-right:4px double #3F3F3F;
+ border-bottom:4px double #3F3F3F;
+ border-left:4px double #3F3F3F;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"检查单元格";
+ }
+.style47
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#E2F0D9;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"20% - 强调文字颜色 6";
+ }
+.style48
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#ED7D31;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"强调文字颜色 2";
+ }
+.style49
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#FA7D00;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:none;
+ border-right:none;
+ border-bottom:4px double #FF8001;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"链接单元格";
+ }
+.style50
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:white;
+ mso-pattern:auto;
+ color:#000000;
+ font-size:11pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid #5B9BD5;
+ border-right:none;
+ border-bottom:4px double #5B9BD5;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ mso-style-name:"汇总";
+ }
+.style51
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#C6EFCE;
+ mso-pattern:auto none;
+ color:#006100;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"好";
+ }
+.style52
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#FFEB9C;
+ mso-pattern:auto none;
+ color:#9C6500;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"适中";
+ }
+.style53
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#DAE3F3;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"20% - 强调文字颜色 5";
+ }
+.style54
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#5B9BD5;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"强调文字颜色 1";
+ }
+.style55
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#DEEBF7;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"20% - 强调文字颜色 1";
+ }
+.style56
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#BDD7EE;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"40% - 强调文字颜色 1";
+ }
+.style57
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#FBE5D6;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"20% - 强调文字颜色 2";
+ }
+.style58
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#F8CBAD;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"40% - 强调文字颜色 2";
+ }
+.style59
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#A5A5A5;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"强调文字颜色 3";
+ }
+.style60
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#FFC000;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"强调文字颜色 4";
+ }
+.style61
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#FFF2CC;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"20% - 强调文字颜色 4";
+ }
+.style62
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#FFE699;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"40% - 强调文字颜色 4";
+ }
+.style63
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#4472C4;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"强调文字颜色 5";
+ }
+.style64
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#B4C7E7;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"40% - 强调文字颜色 5";
+ }
+.style65
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#8FAADC;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"60% - 强调文字颜色 5";
+ }
+.style66
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#70AD47;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"强调文字颜色 6";
+ }
+.style67
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#C5E0B4;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"40% - 强调文字颜色 6";
+ }
+.style68
+ {
+ text-align:general;
+ vertical-align:bottom;
+ white-space:nowrap;
+ background:#A9D18E;
+ mso-pattern:auto none;
+ color:#FFFFFF;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ mso-style-name:"60% - 强调文字颜色 6";
+ }
+.x69
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:general;
+ vertical-align:bottom;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:12pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ }
+.x70
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:center;
+ vertical-align:bottom;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:12pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ }
+.x71
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:center;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:14pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ }
+.x72
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:center;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:20pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ }
+.x73
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:center;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:9pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ }
+.x74
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:right;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ mso-protection:locked visible;
+ }
+.x75
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:center;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:1px solid windowtext;
+ border-bottom:1px solid windowtext;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x76
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:left;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:none;
+ border-bottom:1px solid windowtext;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x77
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:left;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:none;
+ border-bottom:1px solid windowtext;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x78
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:left;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:1px solid windowtext;
+ border-bottom:1px solid windowtext;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x79
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:center;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:#C0C0C0;
+ mso-pattern:auto none;
+ font-size:10pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:1px solid windowtext;
+ border-bottom:1px solid windowtext;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x80
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:center;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:#C0C0C0;
+ mso-pattern:auto none;
+ color:#000000;
+ font-size:10pt;
+ font-weight:700;
+ font-style:normal;
+ font-family:"楷体","monospace";
+ border-top:1px solid windowtext;
+ border-right:1px solid windowtext;
+ border-bottom:1px solid windowtext;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x81
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:left;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:1px solid windowtext;
+ border-bottom:1px solid windowtext;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x82
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:center;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:1px solid windowtext;
+ border-bottom:1px solid windowtext;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x83
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:general;
+ vertical-align:justify;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:none;
+ border-bottom:none;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x84
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:general;
+ vertical-align:justify;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:none;
+ border-bottom:none;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x85
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:general;
+ vertical-align:justify;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:1px solid windowtext;
+ border-bottom:none;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x86
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:general;
+ vertical-align:justify;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:none;
+ border-right:none;
+ border-bottom:1px solid windowtext;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x87
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:general;
+ vertical-align:justify;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:none;
+ border-right:none;
+ border-bottom:1px solid windowtext;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x88
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:general;
+ vertical-align:justify;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:none;
+ border-right:1px solid windowtext;
+ border-bottom:1px solid windowtext;
+ border-left:none;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x89
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:left;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:#C0C0C0;
+ mso-pattern:auto none;
+ font-size:10pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:1px solid windowtext;
+ border-bottom:1px solid windowtext;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+.x90
+ {
+ mso-style-parent:style0;
+ mso-number-format:General;
+ text-align:left;
+ vertical-align:middle;
+ white-space:normal;word-wrap:break-word;
+ background:white;
+ mso-pattern:auto;
+ font-size:11pt;
+ font-weight:400;
+ font-style:normal;
+ font-family:"宋体","sans-serif";
+ border-top:1px solid windowtext;
+ border-right:1px solid windowtext;
+ border-bottom:1px solid windowtext;
+ border-left:1px solid windowtext;
+ mso-diagonal-down:none;
+ mso-diagonal-up:none;
+ mso-protection:locked visible;
+ }
+-->

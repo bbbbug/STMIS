@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.Department" >
+    <id column="BMBH" property="bmbh" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="BMMC" property="bmmc" jdbcType="VARCHAR" />
+    <result column="ZFYQ" property="zfyq" jdbcType="DOUBLE" />
+    <result column="BXXFYQ" property="bxxfyq" jdbcType="DOUBLE" />
+    <result column="XXXFYQ" property="xxxfyq" jdbcType="DOUBLE" />
+    <result column="BXZD1" property="bxzd1" jdbcType="VARCHAR" />
+    <result column="BXZD2" property="bxzd2" jdbcType="VARCHAR" />
+    <result column="BXZD3" property="bxzd3" jdbcType="VARCHAR" />
+    <result column="BXZD4" property="bxzd4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BMBH, ID, BMMC, ZFYQ, BXXFYQ, XXXFYQ, BXZD1, BXZD2, BXZD3, BXZD4
+  </sql>
+  <!-- 自定义 -->
+  <!-- 删除对应编号的部门，将bxzd2作为删除的标识 -->
+  <update id="delDepartment" parameterType="java.lang.String">
+  	update department set bxzd2 = 1 where bmbh = #{bmbh} 
+  </update>
+  <!-- 自定义 -->
+  
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.DepartmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where BMBH = #{bmbh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from department
+    where BMBH = #{bmbh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.DepartmentExample" >
+    delete from department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.Department" >
+    insert into department (BMBH, ID, BMMC, 
+      ZFYQ, BXXFYQ, XXXFYQ, 
+      BXZD1, BXZD2, BXZD3, 
+      BXZD4)
+    values (#{bmbh,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{bmmc,jdbcType=VARCHAR}, 
+      #{zfyq,jdbcType=DOUBLE}, #{bxxfyq,jdbcType=DOUBLE}, #{xxxfyq,jdbcType=DOUBLE}, 
+      #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR}, #{bxzd3,jdbcType=VARCHAR}, 
+      #{bxzd4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.Department" >
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bmbh != null" >
+        BMBH,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="bmmc != null" >
+        BMMC,
+      </if>
+      <if test="zfyq != null" >
+        ZFYQ,
+      </if>
+      <if test="bxxfyq != null" >
+        BXXFYQ,
+      </if>
+      <if test="xxxfyq != null" >
+        XXXFYQ,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD2,
+      </if>
+      <if test="bxzd3 != null" >
+        BXZD3,
+      </if>
+      <if test="bxzd4 != null" >
+        BXZD4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bmbh != null" >
+        #{bmbh,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bmmc != null" >
+        #{bmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zfyq != null" >
+        #{zfyq,jdbcType=DOUBLE},
+      </if>
+      <if test="bxxfyq != null" >
+        #{bxxfyq,jdbcType=DOUBLE},
+      </if>
+      <if test="xxxfyq != null" >
+        #{xxxfyq,jdbcType=DOUBLE},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null" >
+        #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null" >
+        #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.DepartmentExample" resultType="java.lang.Integer" >
+    select count(*) from department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update department
+    <set >
+      <if test="record.bmbh != null" >
+        BMBH = #{record.bmbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.bmmc != null" >
+        BMMC = #{record.bmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zfyq != null" >
+        ZFYQ = #{record.zfyq,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bxxfyq != null" >
+        BXXFYQ = #{record.bxxfyq,jdbcType=DOUBLE},
+      </if>
+      <if test="record.xxxfyq != null" >
+        XXXFYQ = #{record.xxxfyq,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bxzd1 != null" >
+        BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd3 != null" >
+        BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd4 != null" >
+        BXZD4 = #{record.bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update department
+    set BMBH = #{record.bmbh,jdbcType=VARCHAR},
+      ID = #{record.id,jdbcType=INTEGER},
+      BMMC = #{record.bmmc,jdbcType=VARCHAR},
+      ZFYQ = #{record.zfyq,jdbcType=DOUBLE},
+      BXXFYQ = #{record.bxxfyq,jdbcType=DOUBLE},
+      XXXFYQ = #{record.xxxfyq,jdbcType=DOUBLE},
+      BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{record.bxzd4,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.Department" >
+    update department
+    <set >
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bmmc != null" >
+        BMMC = #{bmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zfyq != null" >
+        ZFYQ = #{zfyq,jdbcType=DOUBLE},
+      </if>
+      <if test="bxxfyq != null" >
+        BXXFYQ = #{bxxfyq,jdbcType=DOUBLE},
+      </if>
+      <if test="xxxfyq != null" >
+        XXXFYQ = #{xxxfyq,jdbcType=DOUBLE},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null" >
+        BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null" >
+        BXZD4 = #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BMBH = #{bmbh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.Department" >
+    update department
+    set ID = #{id,jdbcType=INTEGER},
+      BMMC = #{bmmc,jdbcType=VARCHAR},
+      ZFYQ = #{zfyq,jdbcType=DOUBLE},
+      BXXFYQ = #{bxxfyq,jdbcType=DOUBLE},
+      XXXFYQ = #{xxxfyq,jdbcType=DOUBLE},
+      BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{bxzd4,jdbcType=VARCHAR}
+    where BMBH = #{bmbh,jdbcType=VARCHAR}
+  </update>
+</mapper>

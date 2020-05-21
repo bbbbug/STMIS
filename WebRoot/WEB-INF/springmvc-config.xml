@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- spring可以自动去扫描base-pack下面的包或者子包下面的java文件 -->
+	<context:component-scan base-package="app.core.controller" />
+	<!-- 设置配置方案 -->
+	<mvc:annotation-driven />
+	<!-- 使用默认的Servlet来响应静态文件 -->
+	<mvc:default-servlet-handler />
+
+	<!-- 配置拦截器 -->
+<!-- 	<mvc:interceptors>
+		<mvc:interceptor>
+			拦截所有请求
+			<mvc:mapping path="/*" />
+			使用bean定义一个Inteceptor
+			<bean class="app.core.util.Interceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+
+	<!-- 配置自定义格式化转化器 -->
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<!-- 自定义的类型转换器 -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<list>
+				<bean class="app.core.util.DateFormatter" c:_0="yyyy-MM-dd"></bean>
+			</list>
+		</property>
+	</bean>
+
+<!-- 	文件上传和文件下载   -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 上传文件大小上限,单位为字节(10MB)-->
+		<property name="maxUploadSize">
+			<value>1048576000</value>
+		</property>
+		<!--请求的编码格式，必须和jsp的pageEncoding属性一致-->
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+	</bean>
+
+	<!-- 视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 前缀 -->
+		<property name="prefix">
+			<value>/WEB-INF/content/</value>
+		</property>
+		<!-- 后缀 -->
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	
+</beans>

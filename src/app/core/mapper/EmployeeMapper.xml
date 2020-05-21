@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.Employee" >
+    <id column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="YGMM" property="ygmm" jdbcType="VARCHAR" />
+    <result column="YGXM" property="ygxm" jdbcType="VARCHAR" />
+    <result column="YGXB" property="ygxb" jdbcType="VARCHAR" />
+    <result column="YGNL" property="ygnl" jdbcType="INTEGER" />
+    <result column="YGDZ" property="ygdz" jdbcType="VARCHAR" />
+    <result column="YGDWBH" property="ygdwbh" jdbcType="VARCHAR" />
+    <result column="YGDH" property="ygdh" jdbcType="VARCHAR" />
+    <result column="YGQX" property="ygqx" jdbcType="INTEGER" />
+    <result column="YGYX" property="ygyx" jdbcType="VARCHAR" />
+    <result column="YGXF" property="ygxf" jdbcType="VARCHAR" />
+    <result column="YGCJ" property="ygcj" jdbcType="DOUBLE" />
+    <result column="YGPXYQ" property="ygpxyq" jdbcType="VARCHAR" />
+    <result column="YGPXZP" property="ygpxzp" jdbcType="VARCHAR" />
+    <result column="YGZT" property="ygzt" jdbcType="INTEGER" />
+    <result column="YGDLZT" property="ygdlzt" jdbcType="INTEGER" />
+    <result column="JSBS" property="jsbs" jdbcType="VARCHAR" />
+    <result column="BXZD_1" property="bxzd1" jdbcType="VARCHAR" />
+    <result column="BXZD_2" property="bxzd2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 管理员 -->
+  <select id="getAllEmployee" resultType="Employee">
+  	select * from employee
+  </select>
+  <select id="findEmployee" resultType="Employee">
+  	select * from employee where YGZH = #{ygzh} and ID = #{id} order by ID
+  </select>
+  <update id="saveEmployeeChange" parameterType="Employee">
+  	update employee
+  	 <set>
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygmm != null" >
+        YGMM = #{ygmm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxm != null" >
+        YGXM = #{ygxm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxb != null" >
+        YGXB = #{ygxb,jdbcType=VARCHAR},
+      </if>
+      <if test="ygnl != null" >
+        YGNL = #{ygnl,jdbcType=INTEGER},
+      </if>
+      <if test="ygdz != null" >
+        YGDZ = #{ygdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdwbh != null" >
+        YGDWBH = #{ygdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdh != null" >
+        YGDH = #{ygdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygqx != null" >
+        YGQX = #{ygqx,jdbcType=INTEGER},
+      </if>
+      <if test="ygyx != null" >
+        YGYX = #{ygyx,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxf != null" >
+        YGXF = #{ygxf,jdbcType=VARCHAR},
+      </if>
+      <if test="ygcj != null" >
+        YGCJ = #{ygcj,jdbcType=DOUBLE},
+      </if>
+      <if test="ygpxyq != null" >
+        YGPXYQ = #{ygpxyq,jdbcType=VARCHAR},
+      </if>
+      <if test="ygpxzp != null" >
+        YGPXZP = #{ygpxzp,jdbcType=VARCHAR},
+      </if>
+      <if test="ygzt != null" >
+        YGZT = #{ygzt,jdbcType=INTEGER},
+      </if>
+      <if test="ygdlzt != null" >
+        YGDLZT = #{ygdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="jsbs != null" >
+        JSBS = #{jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_1 != null" >
+        BXZD_1 = #{bxzd_1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_2 != null" >
+        BXZD_2 = #{bxzd_2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where YGZH = #{ygzh,jdbcType=VARCHAR}
+  </update>
+  <update id="saveEmployeeCreditChange" parameterType="Employee">
+  	update employee
+  	 <set>
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygmm != null" >
+        YGMM = #{ygmm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxm != null" >
+        YGXM = #{ygxm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxb != null" >
+        YGXB = #{ygxb,jdbcType=VARCHAR},
+      </if>
+      <if test="ygnl != null" >
+        YGNL = #{ygnl,jdbcType=INTEGER},
+      </if>
+      <if test="ygdz != null" >
+        YGDZ = #{ygdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdwbh != null" >
+        YGDWBH = #{ygdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdh != null" >
+        YGDH = #{ygdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygqx != null" >
+        YGQX = #{ygqx,jdbcType=INTEGER},
+      </if>
+      <if test="ygyx != null" >
+        YGYX = #{ygyx,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxf != null" >
+        YGXF = #{ygxf,jdbcType=VARCHAR},
+      </if>
+      <if test="ygcj != null" >
+        YGCJ = #{ygcj,jdbcType=DOUBLE},
+      </if>
+      <if test="ygpxyq != null" >
+        YGPXYQ = #{ygpxyq,jdbcType=VARCHAR},
+      </if>
+      <if test="ygpxzp != null" >
+        YGPXZP = #{ygpxzp,jdbcType=VARCHAR},
+      </if>
+      <if test="ygzt != null" >
+        YGZT = #{ygzt,jdbcType=INTEGER},
+      </if>
+      <if test="ygdlzt != null" >
+        YGDLZT = #{ygdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="jsbs != null" >
+        JSBS = #{jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_1 != null" >
+        BXZD_1 = #{bxzd_1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_2 != null" >
+        BXZD_2 = #{bxzd_2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where YGZH = #{ygzh,jdbcType=VARCHAR}
+  </update>
+  <select id="getEmployeeByCondition" parameterType="Employee" resultType="Employee">
+  	select * from employee
+  	<where>
+  		<if test="ygzh!=null">
+  			and YGZH like CONCAT(CONCAT('%',#{ygzh},'%'))  			
+  		</if>
+  		<if test="ygxm!=null">
+  			and YGXM like CONCAT(CONCAT('%',#{ygxm},'%'))  			
+  		</if>
+  		<if test="bxzd_1!=null">
+  			and BXZD_1 like CONCAT(CONCAT('%',#{bxzd_1},'%'))  	
+  		</if>
+  		<if test="ygdlzt!=null">
+  			and YGDLZT like CONCAT(CONCAT('%',#{ygdlzt},'%'))  	
+  		</if>
+  	</where>
+  </select>
+  <select id="sortEmployeeListByCondition" parameterType="String" resultType="Employee">
+  	select * from employee
+  	<if test="condition=='YGCJ'">
+  		order by YGCJ desc
+  	</if>
+  	<if test="condition=='YGZH'">
+  		order by YGZH asc
+  	</if>
+  </select>
+  <update id="engageEmployee" parameterType="Employee">
+  	update employee set ygdlzt = 1 where id = #{id} and ygzh = #{ygzh}
+  </update>
+  <update id="removeEmployee" parameterType="Employee">
+  	update employee set ygdlzt = 2 where id = #{id} and ygzh = #{ygzh}
+  </update>
+  <insert id="addEmployee" parameterType="app.core.po.Employee">
+  	 insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ygzh != null" >
+        YGZH,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ygmm != null" >
+        YGMM,
+      </if>
+      <if test="ygxm != null" >
+        YGXM,
+      </if>
+      <if test="ygxb != null" >
+        YGXB,
+      </if>
+      <if test="ygnl != null" >
+        YGNL,
+      </if>
+      <if test="ygdz != null" >
+        YGDZ,
+      </if>
+      <if test="ygdwbh != null" >
+        YGDWBH,
+      </if>
+      <if test="ygdh != null" >
+        YGDH,
+      </if>
+      <if test="ygqx != null" >
+        YGQX,
+      </if>
+      <if test="ygyx != null" >
+        YGYX,
+      </if>
+      <if test="ygxf != null" >
+        YGXF,
+      </if>
+      <if test="ygcj != null" >
+        YGCJ,
+      </if>
+      <if test="ygpxyq != null" >
+        YGPXYQ,
+      </if>
+      <if test="ygpxzp != null" >
+        YGPXZP,
+      </if>
+      <if test="ygzt != null" >
+        YGZT,
+      </if>
+      <if test="ygdlzt != null" >
+        YGDLZT,
+      </if>
+      <if test="jsbs != null" >
+        JSBS,
+      </if>
+      <if test="bxzd_1 != null" >
+        BXZD_1,
+      </if>
+      <if test="bxzd_2 != null" >
+        BXZD_2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ygzh != null" >
+        #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygmm != null" >
+        #{ygmm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxm != null" >
+        #{ygxm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxb != null" >
+        #{ygxb,jdbcType=VARCHAR},
+      </if>
+      <if test="ygnl != null" >
+        #{ygnl,jdbcType=INTEGER},
+      </if>
+      <if test="ygdz != null" >
+        #{ygdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdwbh != null" >
+        #{ygdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdh != null" >
+        #{ygdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygqx != null" >
+        #{ygqx,jdbcType=INTEGER},
+      </if>
+      <if test="ygyx != null" >
+        #{ygyx,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxf != null" >
+        #{ygxf,jdbcType=VARCHAR},
+      </if>
+      <if test="ygcj != null" >
+        #{ygcj,jdbcType=DOUBLE},
+      </if>
+      <if test="ygpxyq != null" >
+        #{ygpxyq,jdbcType=VARCHAR},
+      </if>
+      <if test="ygpxzp != null" >
+        #{ygpxzp,jdbcType=VARCHAR},
+      </if>
+      <if test="ygzt != null" >
+        #{ygzt,jdbcType=INTEGER},
+      </if>
+      <if test="ygdlzt != null" >
+        #{ygdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="jsbs != null" >
+        #{jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_1 != null" >
+        #{bxzd_1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_2 != null" >
+        #{bxzd_2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>  
+  <select id="queryRepeatEmployee" parameterType="Employee" resultType="Employee">
+  	select * from employee where YGZH = #{ygzh}
+  </select>
+  <!-- 管理员 -->
+  <!-- 管理员新增 -->
+  <!-- 根据员工单位编号查询对应员工 -->
+  <select id="getEmployeeWithDept" parameterType="Employee" resultType="Employee">
+  	select * from employee where ygdwbh = #{ygdwbh}
+  </select>  
+  <!-- 管理员新增 -->
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    YGZH, ID, YGMM, YGXM, YGXB, YGNL, YGDZ, YGDWBH, YGDH, YGQX, YGYX, YGXF, YGCJ, YGPXYQ, 
+    YGPXZP, YGZT, YGDLZT, JSBS, BXZD_1, BXZD_2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.EmployeeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from employee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where YGZH = #{ygzh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from employee
+    where YGZH = #{ygzh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.EmployeeExample" >
+    delete from employee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.Employee" >
+    insert into employee (YGZH, ID, YGMM, 
+      YGXM, YGXB, YGNL, YGDZ, 
+      YGDWBH, YGDH, YGQX, 
+      YGYX, YGXF, YGCJ, YGPXYQ, 
+      YGPXZP, YGZT, YGDLZT, 
+      JSBS, BXZD_1, BXZD_2)
+    values (#{ygzh,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{ygmm,jdbcType=VARCHAR}, 
+      #{ygxm,jdbcType=VARCHAR}, #{ygxb,jdbcType=VARCHAR}, #{ygnl,jdbcType=INTEGER}, #{ygdz,jdbcType=VARCHAR}, 
+      #{ygdwbh,jdbcType=VARCHAR}, #{ygdh,jdbcType=VARCHAR}, #{ygqx,jdbcType=INTEGER}, 
+      #{ygyx,jdbcType=VARCHAR}, #{ygxf,jdbcType=VARCHAR}, #{ygcj,jdbcType=DOUBLE}, #{ygpxyq,jdbcType=VARCHAR}, 
+      #{ygpxzp,jdbcType=VARCHAR}, #{ygzt,jdbcType=INTEGER}, #{ygdlzt,jdbcType=INTEGER}, 
+      #{jsbs,jdbcType=VARCHAR}, #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.Employee" >
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ygzh != null" >
+        YGZH,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ygmm != null" >
+        YGMM,
+      </if>
+      <if test="ygxm != null" >
+        YGXM,
+      </if>
+      <if test="ygxb != null" >
+        YGXB,
+      </if>
+      <if test="ygnl != null" >
+        YGNL,
+      </if>
+      <if test="ygdz != null" >
+        YGDZ,
+      </if>
+      <if test="ygdwbh != null" >
+        YGDWBH,
+      </if>
+      <if test="ygdh != null" >
+        YGDH,
+      </if>
+      <if test="ygqx != null" >
+        YGQX,
+      </if>
+      <if test="ygyx != null" >
+        YGYX,
+      </if>
+      <if test="ygxf != null" >
+        YGXF,
+      </if>
+      <if test="ygcj != null" >
+        YGCJ,
+      </if>
+      <if test="ygpxyq != null" >
+        YGPXYQ,
+      </if>
+      <if test="ygpxzp != null" >
+        YGPXZP,
+      </if>
+      <if test="ygzt != null" >
+        YGZT,
+      </if>
+      <if test="ygdlzt != null" >
+        YGDLZT,
+      </if>
+      <if test="jsbs != null" >
+        JSBS,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ygzh != null" >
+        #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygmm != null" >
+        #{ygmm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxm != null" >
+        #{ygxm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxb != null" >
+        #{ygxb,jdbcType=VARCHAR},
+      </if>
+      <if test="ygnl != null" >
+        #{ygnl,jdbcType=INTEGER},
+      </if>
+      <if test="ygdz != null" >
+        #{ygdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdwbh != null" >
+        #{ygdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdh != null" >
+        #{ygdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygqx != null" >
+        #{ygqx,jdbcType=INTEGER},
+      </if>
+      <if test="ygyx != null" >
+        #{ygyx,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxf != null" >
+        #{ygxf,jdbcType=VARCHAR},
+      </if>
+      <if test="ygcj != null" >
+        #{ygcj,jdbcType=DOUBLE},
+      </if>
+      <if test="ygpxyq != null" >
+        #{ygpxyq,jdbcType=VARCHAR},
+      </if>
+      <if test="ygpxzp != null" >
+        #{ygpxzp,jdbcType=VARCHAR},
+      </if>
+      <if test="ygzt != null" >
+        #{ygzt,jdbcType=INTEGER},
+      </if>
+      <if test="ygdlzt != null" >
+        #{ygdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="jsbs != null" >
+        #{jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.EmployeeExample" resultType="java.lang.Integer" >
+    select count(*) from employee
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update employee
+    <set >
+      <if test="record.ygzh != null" >
+        YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ygmm != null" >
+        YGMM = #{record.ygmm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygxm != null" >
+        YGXM = #{record.ygxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygxb != null" >
+        YGXB = #{record.ygxb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygnl != null" >
+        YGNL = #{record.ygnl,jdbcType=INTEGER},
+      </if>
+      <if test="record.ygdz != null" >
+        YGDZ = #{record.ygdz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygdwbh != null" >
+        YGDWBH = #{record.ygdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygdh != null" >
+        YGDH = #{record.ygdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygqx != null" >
+        YGQX = #{record.ygqx,jdbcType=INTEGER},
+      </if>
+      <if test="record.ygyx != null" >
+        YGYX = #{record.ygyx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygxf != null" >
+        YGXF = #{record.ygxf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygcj != null" >
+        YGCJ = #{record.ygcj,jdbcType=DOUBLE},
+      </if>
+      <if test="record.ygpxyq != null" >
+        YGPXYQ = #{record.ygpxyq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygpxzp != null" >
+        YGPXZP = #{record.ygpxzp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygzt != null" >
+        YGZT = #{record.ygzt,jdbcType=INTEGER},
+      </if>
+      <if test="record.ygdlzt != null" >
+        YGDLZT = #{record.ygdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="record.jsbs != null" >
+        JSBS = #{record.jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd1 != null" >
+        BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update employee
+    set YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      ID = #{record.id,jdbcType=INTEGER},
+      YGMM = #{record.ygmm,jdbcType=VARCHAR},
+      YGXM = #{record.ygxm,jdbcType=VARCHAR},
+      YGXB = #{record.ygxb,jdbcType=VARCHAR},
+      YGNL = #{record.ygnl,jdbcType=INTEGER},
+      YGDZ = #{record.ygdz,jdbcType=VARCHAR},
+      YGDWBH = #{record.ygdwbh,jdbcType=VARCHAR},
+      YGDH = #{record.ygdh,jdbcType=VARCHAR},
+      YGQX = #{record.ygqx,jdbcType=INTEGER},
+      YGYX = #{record.ygyx,jdbcType=VARCHAR},
+      YGXF = #{record.ygxf,jdbcType=VARCHAR},
+      YGCJ = #{record.ygcj,jdbcType=DOUBLE},
+      YGPXYQ = #{record.ygpxyq,jdbcType=VARCHAR},
+      YGPXZP = #{record.ygpxzp,jdbcType=VARCHAR},
+      YGZT = #{record.ygzt,jdbcType=INTEGER},
+      YGDLZT = #{record.ygdlzt,jdbcType=INTEGER},
+      JSBS = #{record.jsbs,jdbcType=VARCHAR},
+      BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.Employee" >
+    update employee
+    <set >
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygmm != null" >
+        YGMM = #{ygmm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxm != null" >
+        YGXM = #{ygxm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxb != null" >
+        YGXB = #{ygxb,jdbcType=VARCHAR},
+      </if>
+      <if test="ygnl != null" >
+        YGNL = #{ygnl,jdbcType=INTEGER},
+      </if>
+      <if test="ygdz != null" >
+        YGDZ = #{ygdz,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdwbh != null" >
+        YGDWBH = #{ygdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygdh != null" >
+        YGDH = #{ygdh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygqx != null" >
+        YGQX = #{ygqx,jdbcType=INTEGER},
+      </if>
+      <if test="ygyx != null" >
+        YGYX = #{ygyx,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxf != null" >
+        YGXF = #{ygxf,jdbcType=VARCHAR},
+      </if>
+      <if test="ygcj != null" >
+        YGCJ = #{ygcj,jdbcType=DOUBLE},
+      </if>
+      <if test="ygpxyq != null" >
+        YGPXYQ = #{ygpxyq,jdbcType=VARCHAR},
+      </if>
+      <if test="ygpxzp != null" >
+        YGPXZP = #{ygpxzp,jdbcType=VARCHAR},
+      </if>
+      <if test="ygzt != null" >
+        YGZT = #{ygzt,jdbcType=INTEGER},
+      </if>
+      <if test="ygdlzt != null" >
+        YGDLZT = #{ygdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="jsbs != null" >
+        JSBS = #{jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where YGZH = #{ygzh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.Employee" >
+    update employee
+    set ID = #{id,jdbcType=INTEGER},
+      YGMM = #{ygmm,jdbcType=VARCHAR},
+      YGXM = #{ygxm,jdbcType=VARCHAR},
+      YGXB = #{ygxb,jdbcType=VARCHAR},
+      YGNL = #{ygnl,jdbcType=INTEGER},
+      YGDZ = #{ygdz,jdbcType=VARCHAR},
+      YGDWBH = #{ygdwbh,jdbcType=VARCHAR},
+      YGDH = #{ygdh,jdbcType=VARCHAR},
+      YGQX = #{ygqx,jdbcType=INTEGER},
+      YGYX = #{ygyx,jdbcType=VARCHAR},
+      YGXF = #{ygxf,jdbcType=VARCHAR},
+      YGCJ = #{ygcj,jdbcType=DOUBLE},
+      YGPXYQ = #{ygpxyq,jdbcType=VARCHAR},
+      YGPXZP = #{ygpxzp,jdbcType=VARCHAR},
+      YGZT = #{ygzt,jdbcType=INTEGER},
+      YGDLZT = #{ygdlzt,jdbcType=INTEGER},
+      JSBS = #{jsbs,jdbcType=VARCHAR},
+      BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{bxzd2,jdbcType=VARCHAR}
+    where YGZH = #{ygzh,jdbcType=VARCHAR}
+  </update>
+    <select id="selectUser" resultMap="BaseResultMap" parameterType="app.core.po.Employee" >
+    select *from employee
+    where YGZH = #{ygzh} and YGMM=#{ygmm}
+  </select>
+  <select id="emCount" resultType="java.lang.Integer">
+    select count(*) from employee
+  </select>
+      <select id="selectEmployeeByDepartment" resultMap="BaseResultMap" parameterType="app.core.po.Employee">
+    select * from employee where YGDWBH = #{ygdwbh,jdbcType=VARCHAR}
+  </select>
+    <select id="findEm" resultType="Employee">
+  	select * from employee where YGZH = #{ygzh}
+  </select>
+  <update id="saveEmChange" parameterType="app.core.po.Employee" >
+    update employee
+    set 
+      <if test="ygmm != null" >
+        YGMM = #{ygmm,jdbcType=VARCHAR},
+      </if>
+      YGXM = #{ygxm,jdbcType=VARCHAR},
+      YGDZ = #{ygdz,jdbcType=VARCHAR},
+      YGDH = #{ygdh,jdbcType=VARCHAR},
+      YGYX = #{ygyx,jdbcType=VARCHAR}
+    where YGZH = #{ygzh,jdbcType=VARCHAR}
+  </update>
+</mapper>

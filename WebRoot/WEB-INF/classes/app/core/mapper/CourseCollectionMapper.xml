@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.CourseCollectionMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.CourseCollection" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+    <result column="KCBH" property="kcbh" jdbcType="VARCHAR" />
+    <result column="kcjd" property="kcjd" jdbcType="INTEGER" />
+    <result column="BXZD_2" property="bxzd2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, YGZH, KCBH, kcjd, BXZD_2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.CourseCollectionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_collection
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_collection
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_collection
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.CourseCollectionExample" >
+    delete from course_collection
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.CourseCollection" >
+    insert into course_collection (ID, YGZH, KCBH, 
+      kcjd, BXZD_2)
+    values (#{id,jdbcType=INTEGER}, #{ygzh,jdbcType=VARCHAR}, #{kcbh,jdbcType=VARCHAR}, 
+      #{kcjd,jdbcType=INTEGER}, #{bxzd2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.CourseCollection" >
+    insert into course_collection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ygzh != null" >
+        YGZH,
+      </if>
+      <if test="kcbh != null" >
+        KCBH,
+      </if>
+      <if test="kcjd != null" >
+        kcjd,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygzh != null" >
+        #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcbh != null" >
+        #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcjd != null" >
+        #{kcjd,jdbcType=INTEGER},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.CourseCollectionExample" resultType="java.lang.Integer" >
+    select count(*) from course_collection
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course_collection
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ygzh != null" >
+        YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcbh != null" >
+        KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcjd != null" >
+        kcjd = #{record.kcjd,jdbcType=INTEGER},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course_collection
+    set ID = #{record.id,jdbcType=INTEGER},
+      YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      kcjd = #{record.kcjd,jdbcType=INTEGER},
+      BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.CourseCollection" >
+    update course_collection
+    <set >
+      <if test="ygzh != null" >
+        YGZH = #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcbh != null" >
+        KCBH = #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcjd != null" >
+        kcjd = #{kcjd,jdbcType=INTEGER},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.CourseCollection" >
+    update course_collection
+    set YGZH = #{ygzh,jdbcType=VARCHAR},
+      KCBH = #{kcbh,jdbcType=VARCHAR},
+      kcjd = #{kcjd,jdbcType=INTEGER},
+      BXZD_2 = #{bxzd2,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+   <resultMap id="ClassResultMap" type="app.core.po.Course">
+ 		<id property="id" column="id"/>
+			 <result column="KCMC" property="kcmc" jdbcType="VARCHAR" />
+			  <result column="KCBH" property="kcbh" jdbcType="VARCHAR" />
+		    <result column="KCLB" property="kclb" jdbcType="VARCHAR" />
+		    <result column="KCJJ" property="kcjj" jdbcType="VARCHAR" />
+		    <result column="KCJS" property="kcjs" jdbcType="VARCHAR" />
+		    <result column="KCZT" property="kczt" jdbcType="INTEGER" />
+		    <result column="KCXF" property="kcxf" jdbcType="INTEGER" />
+		    <result column="KCTB" property="kctb" jdbcType="VARCHAR" />
+	    <association property="courseCollection" javaType="app.core.po.CourseCollection">
+			<id property="id" column="id"/>
+			<result column="ID" property="id" jdbcType="INTEGER" />
+			<result column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+		    <result column="KCBH" property="kcbh" jdbcType="VARCHAR" />
+		    <result column="kcjd" property="kcjd" jdbcType="INTEGER" />
+		    <result column="BXZD_2" property="bxzd2" jdbcType="VARCHAR" />
+		</association>
+ </resultMap>
+ 
+  <select id="showMyCollection" resultMap="ClassResultMap" parameterType="app.core.po.CourseCollection" >
+    select * from course c, course_collection cc  
+    where ygzh = #{ygzh,jdbcType=VARCHAR} and c.kcbh = cc.kcbh   order by cc.kcjd
+ </select>
+ 
+  <select id="checkCollectCourse" resultType="java.lang.Integer" parameterType="app.core.po.CourseCollection" >
+    select count(*) from course_collection
+    where ygzh = #{ygzh} and kcbh = #{kcbh}
+  </select>
+ 
+  <insert id="addCollectCourse" parameterType="app.core.po.CourseCollection" >
+    insert into course_collection (YGZH, KCBH)
+    values (#{ygzh,jdbcType=VARCHAR}, #{kcbh,jdbcType=VARCHAR})
+  </insert>
+  
+  <select id="checkCourseCollect" resultMap="BaseResultMap" parameterType="app.core.po.CourseCollection" >
+    select * from course_collection
+    where ygzh = #{ygzh} and kcbh = #{kcbh}
+ </select>
+ 
+  <delete id="removeCollection" parameterType="app.core.po.CourseCollection" >
+    delete from course_collection
+    where ygzh = #{ygzh} and kcbh = #{kcbh}
+ </delete>
+</mapper>

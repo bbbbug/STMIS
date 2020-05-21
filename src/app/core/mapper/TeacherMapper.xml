@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.Teacher" >
+    <id column="JSZH" property="jszh" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="JSMM" property="jsmm" jdbcType="VARCHAR" />
+    <result column="JSXM" property="jsxm" jdbcType="VARCHAR" />
+    <result column="JSZY" property="jszy" jdbcType="VARCHAR" />
+    <result column="JSDWBH" property="jsdwbh" jdbcType="VARCHAR" />
+    <result column="JSDJ" property="jsdj" jdbcType="INTEGER" />
+    <result column="JSDLZT" property="jsdlzt" jdbcType="INTEGER" />
+    <result column="KCBH" property="kcbh" jdbcType="VARCHAR" />
+    <result column="JSBS" property="jsbs" jdbcType="VARCHAR" />
+    <result column="JSXB" property="jsxb" jdbcType="VARCHAR" />
+    <result column="JSNL" property="jsnl" jdbcType="INTEGER" />
+    <result column="JSTX" property="jstx" jdbcType="VARCHAR" />
+    <result column="JSJJ" property="jsjj" jdbcType="VARCHAR" />
+    <result column="BXZD_1" property="bxzd1" jdbcType="VARCHAR" />
+    <result column="BXZD_2" property="bxzd2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 管理员 -->
+  <select id="getAllTeacher" resultType="Teacher">
+  	select * from teacher order by ID;
+  </select>
+  <update id="updateTeacher" parameterType="Teacher">
+  	update teacher
+    <set>
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jsmm != null" >
+        JSMM = #{jsmm,jdbcType=VARCHAR},
+      </if>
+      <if test="jsxm != null" >
+        JSXM = #{jsxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jszy != null" >
+        JSZY = #{jszy,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdwbh != null" >
+        JSDWBH = #{jsdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdj != null" >
+        JSDJ = #{jsdj,jdbcType=INTEGER},
+      </if>
+      <if test="jsdlzt != null" >
+        JSDLZT = #{jsdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="kcbh != null" >
+        KCBH = #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsbs != null" >
+        JSBS = #{jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="jsxb != null" >
+        JSXB = #{jsxb,jdbcType=VARCHAR},
+      </if>
+      <if test="jsnl != null" >
+        JSNL = #{jsnl,jdbcType=INTEGER},
+      </if>
+      <if test="jstx != null" >
+        JSTX = #{jstx,jdbcType=VARCHAR},
+      </if>
+      <if test="jsjj != null" >
+        JSJJ = #{jsjj,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where JSZH = #{jszh,jdbcType=VARCHAR}
+  </update>
+  <select id="findTeacher" resultType="Teacher">
+  	select * from teacher where JSZH = #{jszh} and id = #{id}
+  </select>
+  <update id="engageTeacher" parameterType="Teacher">
+  	update teacher set JSDLZT = 1 where JSZH = #{jszh,jdbcType=VARCHAR}
+  </update>
+  <update id="fireTeacher" parameterType="Teacher">
+  	update teacher set JSDLZT = 2 where JSZH = #{jszh,jdbcType=VARCHAR}
+  </update>
+  <insert id="addTeacher" parameterType="Teacher">
+  	insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jszh != null" >
+        JSZH,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="jsmm != null" >
+        JSMM,
+      </if>
+      <if test="jsxm != null" >
+        JSXM,
+      </if>
+      <if test="jszy != null" >
+        JSZY,
+      </if>
+      <if test="jsdwbh != null" >
+        JSDWBH,
+      </if>
+      <if test="jsdj != null" >
+        JSDJ,
+      </if>
+      <if test="jsdlzt != null" >
+        JSDLZT,
+      </if>
+      <if test="kcbh != null" >
+        KCBH,
+      </if>
+      <if test="jsbs != null" >
+        JSBS,
+      </if>
+      <if test="jsxb != null" >
+        JSXB,
+      </if>
+      <if test="jsnl != null" >
+        JSNL,
+      </if>
+      <if test="jstx != null" >
+        JSTX,
+      </if>
+      <if test="jsjj != null" >
+        JSJJ,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jszh != null" >
+        #{jszh,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jsmm != null" >
+        #{jsmm,jdbcType=VARCHAR},
+      </if>
+      <if test="jsxm != null" >
+        #{jsxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jszy != null" >
+        #{jszy,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdwbh != null" >
+        #{jsdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdj != null" >
+        #{jsdj,jdbcType=INTEGER},
+      </if>
+      <if test="jsdlzt != null" >
+        #{jsdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="kcbh != null" >
+        #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsbs != null" >
+        #{jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="jsxb != null" >
+        #{jsxb,jdbcType=VARCHAR},
+      </if>
+      <if test="jsnl != null" >
+        #{jsnl,jdbcType=INTEGER},
+      </if>
+      <if test="jstx != null" >
+        #{jstx,jdbcType=VARCHAR},
+      </if>
+      <if test="jsjj != null" >
+        #{jsjj,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="getTeacherByName" resultType="Teacher" parameterType="String">
+  	select * from teacher
+  	<where>
+  		<if test="jsxm!=null">
+  			and JSXM like CONCAT(CONCAT('%',#{jsxm},'%')) order by ID
+  		</if>
+  	</where>
+  </select>
+  <!-- 管理员 -->
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    JSZH, ID, JSMM, JSXM, JSZY, JSDWBH, JSDJ, JSDLZT, KCBH, JSBS, JSXB, JSNL, JSTX, JSJJ, 
+    BXZD_1, BXZD_2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.TeacherExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectUser" parameterType="app.core.po.User" resultMap="BaseResultMap" >
+    select * from teacher
+    where JSZH = #{jszh} and JSMM=#{jsmm}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from teacher
+    where JSZH = #{jszh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.TeacherExample" >
+    delete from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.Teacher" >
+    insert into teacher (JSZH, ID, JSMM, 
+      JSXM, JSZY, JSDWBH, 
+      JSDJ, JSDLZT, KCBH, 
+      JSBS, JSXB, JSNL, JSTX, 
+      JSJJ, BXZD_1, BXZD_2)
+    values (#{jszh,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{jsmm,jdbcType=VARCHAR}, 
+      #{jsxm,jdbcType=VARCHAR}, #{jszy,jdbcType=VARCHAR}, #{jsdwbh,jdbcType=VARCHAR}, 
+      #{jsdj,jdbcType=INTEGER}, #{jsdlzt,jdbcType=INTEGER}, #{kcbh,jdbcType=VARCHAR}, 
+      #{jsbs,jdbcType=VARCHAR}, #{jsxb,jdbcType=VARCHAR}, #{jsnl,jdbcType=INTEGER}, #{jstx,jdbcType=VARCHAR}, 
+      #{jsjj,jdbcType=VARCHAR}, #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.Teacher" >
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jszh != null" >
+        JSZH,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="jsmm != null" >
+        JSMM,
+      </if>
+      <if test="jsxm != null" >
+        JSXM,
+      </if>
+      <if test="jszy != null" >
+        JSZY,
+      </if>
+      <if test="jsdwbh != null" >
+        JSDWBH,
+      </if>
+      <if test="jsdj != null" >
+        JSDJ,
+      </if>
+      <if test="jsdlzt != null" >
+        JSDLZT,
+      </if>
+      <if test="kcbh != null" >
+        KCBH,
+      </if>
+      <if test="jsbs != null" >
+        JSBS,
+      </if>
+      <if test="jsxb != null" >
+        JSXB,
+      </if>
+      <if test="jsnl != null" >
+        JSNL,
+      </if>
+      <if test="jstx != null" >
+        JSTX,
+      </if>
+      <if test="jsjj != null" >
+        JSJJ,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jszh != null" >
+        #{jszh,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jsmm != null" >
+        #{jsmm,jdbcType=VARCHAR},
+      </if>
+      <if test="jsxm != null" >
+        #{jsxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jszy != null" >
+        #{jszy,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdwbh != null" >
+        #{jsdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdj != null" >
+        #{jsdj,jdbcType=INTEGER},
+      </if>
+      <if test="jsdlzt != null" >
+        #{jsdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="kcbh != null" >
+        #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsbs != null" >
+        #{jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="jsxb != null" >
+        #{jsxb,jdbcType=VARCHAR},
+      </if>
+      <if test="jsnl != null" >
+        #{jsnl,jdbcType=INTEGER},
+      </if>
+      <if test="jstx != null" >
+        #{jstx,jdbcType=VARCHAR},
+      </if>
+      <if test="jsjj != null" >
+        #{jsjj,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.TeacherExample" resultType="java.lang.Integer" >
+    select count(*) from teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update teacher
+    <set >
+      <if test="record.jszh != null" >
+        JSZH = #{record.jszh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.jsmm != null" >
+        JSMM = #{record.jsmm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsxm != null" >
+        JSXM = #{record.jsxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jszy != null" >
+        JSZY = #{record.jszy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsdwbh != null" >
+        JSDWBH = #{record.jsdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsdj != null" >
+        JSDJ = #{record.jsdj,jdbcType=INTEGER},
+      </if>
+      <if test="record.jsdlzt != null" >
+        JSDLZT = #{record.jsdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="record.kcbh != null" >
+        KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsbs != null" >
+        JSBS = #{record.jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsxb != null" >
+        JSXB = #{record.jsxb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsnl != null" >
+        JSNL = #{record.jsnl,jdbcType=INTEGER},
+      </if>
+      <if test="record.jstx != null" >
+        JSTX = #{record.jstx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsjj != null" >
+        JSJJ = #{record.jsjj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd1 != null" >
+        BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update teacher
+    set JSZH = #{record.jszh,jdbcType=VARCHAR},
+      ID = #{record.id,jdbcType=INTEGER},
+      JSMM = #{record.jsmm,jdbcType=VARCHAR},
+      JSXM = #{record.jsxm,jdbcType=VARCHAR},
+      JSZY = #{record.jszy,jdbcType=VARCHAR},
+      JSDWBH = #{record.jsdwbh,jdbcType=VARCHAR},
+      JSDJ = #{record.jsdj,jdbcType=INTEGER},
+      JSDLZT = #{record.jsdlzt,jdbcType=INTEGER},
+      KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      JSBS = #{record.jsbs,jdbcType=VARCHAR},
+      JSXB = #{record.jsxb,jdbcType=VARCHAR},
+      JSNL = #{record.jsnl,jdbcType=INTEGER},
+      JSTX = #{record.jstx,jdbcType=VARCHAR},
+      JSJJ = #{record.jsjj,jdbcType=VARCHAR},
+      BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.Teacher" >
+    update teacher
+    <set >
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jsmm != null" >
+        JSMM = #{jsmm,jdbcType=VARCHAR},
+      </if>
+      <if test="jsxm != null" >
+        JSXM = #{jsxm,jdbcType=VARCHAR},
+      </if>
+      <if test="jszy != null" >
+        JSZY = #{jszy,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdwbh != null" >
+        JSDWBH = #{jsdwbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsdj != null" >
+        JSDJ = #{jsdj,jdbcType=INTEGER},
+      </if>
+      <if test="jsdlzt != null" >
+        JSDLZT = #{jsdlzt,jdbcType=INTEGER},
+      </if>
+      <if test="kcbh != null" >
+        KCBH = #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsbs != null" >
+        JSBS = #{jsbs,jdbcType=VARCHAR},
+      </if>
+      <if test="jsxb != null" >
+        JSXB = #{jsxb,jdbcType=VARCHAR},
+      </if>
+      <if test="jsnl != null" >
+        JSNL = #{jsnl,jdbcType=INTEGER},
+      </if>
+      <if test="jstx != null" >
+        JSTX = #{jstx,jdbcType=VARCHAR},
+      </if>
+      <if test="jsjj != null" >
+        JSJJ = #{jsjj,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where JSZH = #{jszh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.Teacher" >
+    update teacher
+    set ID = #{id,jdbcType=INTEGER},
+      JSMM = #{jsmm,jdbcType=VARCHAR},
+      JSXM = #{jsxm,jdbcType=VARCHAR},
+      JSZY = #{jszy,jdbcType=VARCHAR},
+      JSDWBH = #{jsdwbh,jdbcType=VARCHAR},
+      JSDJ = #{jsdj,jdbcType=INTEGER},
+      JSDLZT = #{jsdlzt,jdbcType=INTEGER},
+      KCBH = #{kcbh,jdbcType=VARCHAR},
+      JSBS = #{jsbs,jdbcType=VARCHAR},
+      JSXB = #{jsxb,jdbcType=VARCHAR},
+      JSNL = #{jsnl,jdbcType=INTEGER},
+      JSTX = #{jstx,jdbcType=VARCHAR},
+      JSJJ = #{jsjj,jdbcType=VARCHAR},
+      BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{bxzd2,jdbcType=VARCHAR}
+    where JSZH = #{jszh,jdbcType=VARCHAR}
+  </update>
+ 
+</mapper>

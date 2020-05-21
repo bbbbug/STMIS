@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.ReviewMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.Review" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+    <result column="KCBH" property="kcbh" jdbcType="VARCHAR" />
+    <result column="PLNR" property="plnr" jdbcType="VARCHAR" />
+    <result column="PLSJ" property="plsj" jdbcType="TIMESTAMP" />
+    <result column="PLLLL" property="pllll" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, YGZH, KCBH, PLNR, PLSJ, PLLLL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.ReviewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from review
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from review
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.ReviewExample" >
+    delete from review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.Review" >
+    insert into review (ID, YGZH, KCBH, 
+      PLNR, PLSJ, PLLLL
+      )
+    values (#{id,jdbcType=INTEGER}, #{ygzh,jdbcType=VARCHAR}, #{kcbh,jdbcType=VARCHAR}, 
+      #{plnr,jdbcType=VARCHAR}, #{plsj,jdbcType=TIMESTAMP}, #{pllll,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.Review" >
+    insert into review
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ygzh != null" >
+        YGZH,
+      </if>
+      <if test="kcbh != null" >
+        KCBH,
+      </if>
+      <if test="plnr != null" >
+        PLNR,
+      </if>
+      <if test="plsj != null" >
+        PLSJ,
+      </if>
+      <if test="pllll != null" >
+        PLLLL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygzh != null" >
+        #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcbh != null" >
+        #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="plnr != null" >
+        #{plnr,jdbcType=VARCHAR},
+      </if>
+      <if test="plsj != null" >
+        #{plsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pllll != null" >
+        #{pllll,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.ReviewExample" resultType="java.lang.Integer" >
+    select count(*) from review
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update review
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ygzh != null" >
+        YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcbh != null" >
+        KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plnr != null" >
+        PLNR = #{record.plnr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plsj != null" >
+        PLSJ = #{record.plsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pllll != null" >
+        PLLLL = #{record.pllll,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update review
+    set ID = #{record.id,jdbcType=INTEGER},
+      YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      PLNR = #{record.plnr,jdbcType=VARCHAR},
+      PLSJ = #{record.plsj,jdbcType=TIMESTAMP},
+      PLLLL = #{record.pllll,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.Review" >
+    update review
+    <set >
+      <if test="ygzh != null" >
+        YGZH = #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcbh != null" >
+        KCBH = #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="plnr != null" >
+        PLNR = #{plnr,jdbcType=VARCHAR},
+      </if>
+      <if test="plsj != null" >
+        PLSJ = #{plsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pllll != null" >
+        PLLLL = #{pllll,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.Review" >
+    update review
+    set YGZH = #{ygzh,jdbcType=VARCHAR},
+      KCBH = #{kcbh,jdbcType=VARCHAR},
+      PLNR = #{plnr,jdbcType=VARCHAR},
+      PLSJ = #{plsj,jdbcType=TIMESTAMP},
+      PLLLL = #{pllll,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="addComment" parameterType="app.core.po.Review" >
+    insert into review (YGZH, KCBH, PLNR
+      )
+    values (#{ygzh,jdbcType=VARCHAR}, #{kcbh,jdbcType=VARCHAR}, 
+      #{plnr,jdbcType=VARCHAR})
+  </insert>
+  <resultMap id="ClassResultMap" type="app.core.po.Employee">
+ 			<id property="id" column="id"/>
+		    <result column="YGXB" property="ygxb" jdbcType="VARCHAR" />
+		     <result column="YGXM" property="ygxm" jdbcType="VARCHAR" />
+	    <association property="review" javaType="app.core.po.Review">
+			<id property="id" column="id"/>
+			<id column="ID" property="id" jdbcType="INTEGER" />
+			<result column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+			<result column="KCBH" property="kcbh" jdbcType="VARCHAR" />
+			<result column="PLNR" property="plnr" jdbcType="VARCHAR" />
+			<result column="PLSJ" property="plsj" jdbcType="TIMESTAMP" />
+			<result column="PLLLL" property="pllll" jdbcType="INTEGER" />
+		</association>
+ </resultMap>
+  <select id="showReviews" resultMap="ClassResultMap" parameterType="app.core.po.Review" >
+    select e.ygxb,e.ygxm,r.ygzh,r.kcbh,r.plnr,r.plsj,r.pllll from employee e,review r
+     	<where>
+     		kcbh=#{kcbh,jdbcType=VARCHAR} and e.ygzh=r.ygzh order by r.id desc
+     	</where>
+  </select>
+</mapper>

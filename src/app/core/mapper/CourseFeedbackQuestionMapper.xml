@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.CourseFeedbackQuestionMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.CourseFeedbackQuestion" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="FKTMMC" property="fktmmc" jdbcType="VARCHAR" />
+    <result column="FKTMXX1" property="fktmxx1" jdbcType="VARCHAR" />
+    <result column="FKTMXX2" property="fktmxx2" jdbcType="VARCHAR" />
+    <result column="FKTMXX3" property="fktmxx3" jdbcType="VARCHAR" />
+    <result column="FKTMXX4" property="fktmxx4" jdbcType="VARCHAR" />
+    <result column="FKTMXX5" property="fktmxx5" jdbcType="VARCHAR" />
+    <result column="FKTMLX" property="fktmlx" jdbcType="VARCHAR" />
+    <result column="CFID" property="cfid" jdbcType="INTEGER" />
+    <result column="BXZD1" property="bxzd1" jdbcType="VARCHAR" />
+    <result column="BXZD2" property="bxzd2" jdbcType="VARCHAR" />
+    <result column="BXZD3" property="bxzd3" jdbcType="VARCHAR" />
+    <result column="BXZD4" property="bxzd4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, FKTMMC, FKTMXX1, FKTMXX2, FKTMXX3, FKTMXX4, FKTMXX5, FKTMLX, CFID, BXZD1, BXZD2, 
+    BXZD3, BXZD4
+  </sql>
+  <!-- 自定义 -->
+  <!-- 批量添加反馈题目至数据库 -->
+  <insert id="addCourseFeedbackQuestion" parameterType="java.util.List">
+  	insert into course_feedback_question (ID,FKTMMC,FKTMXX1,FKTMXX2,FKTMXX3,FKTMXX4,FKTMXX5,FKTMLX)
+  	values
+  	<foreach collection="list" item="item" index="index" separator=",">  		
+  		  (#{item.id,jdbcType=INTEGER}, #{item.fktmmc,jdbcType=VARCHAR}, #{item.fktmxx1,jdbcType=VARCHAR}, 
+      		#{item.fktmxx2,jdbcType=VARCHAR}, #{item.fktmxx3,jdbcType=VARCHAR}, #{item.fktmxx4,jdbcType=VARCHAR}, 
+      		#{item.fktmxx5,jdbcType=VARCHAR}, #{item.fktmlx,jdbcType=VARCHAR})
+  	</foreach>
+  </insert>
+  <!-- 批量更新反馈题目至数据库 -->
+    <insert id="updateCourseFeedbackQuestion" parameterType="java.util.List">
+	  	insert into course_feedback_question (ID,FKTMMC,FKTMXX1,FKTMXX2,FKTMXX3,FKTMXX4,FKTMXX5,FKTMLX)
+	  	values
+  	<foreach collection="list" item="item" index="index" separator=",">  		
+  		  (#{item.id,jdbcType=INTEGER}, #{item.fktmmc,jdbcType=VARCHAR}, #{item.fktmxx1,jdbcType=VARCHAR}, 
+      		#{item.fktmxx2,jdbcType=VARCHAR}, #{item.fktmxx3,jdbcType=VARCHAR}, #{item.fktmxx4,jdbcType=VARCHAR}, 
+      		#{item.fktmxx5,jdbcType=VARCHAR}, #{item.fktmlx,jdbcType=VARCHAR})      		
+  	</foreach>
+	  	on DUPLICATE KEY UPDATE
+	      		FKTMMC=values(FKTMMC),
+	      		FKTMXX1=values(FKTMXX1),
+	      		FKTMXX2=values(FKTMXX2),
+	      		FKTMXX3=values(FKTMXX3),
+	      		FKTMXX4=values(FKTMXX4),
+	      		FKTMXX5=values(FKTMXX5),
+	      		FKTMLX=values(FKTMLX)
+  </insert>
+  <!-- 自定义 -->
+  
+  
+  <!-- 自动生成 -->
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.CourseFeedbackQuestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_feedback_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_feedback_question
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_feedback_question
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.CourseFeedbackQuestionExample" >
+    delete from course_feedback_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.CourseFeedbackQuestion" >
+    insert into course_feedback_question (ID, FKTMMC, FKTMXX1, 
+      FKTMXX2, FKTMXX3, FKTMXX4, 
+      FKTMXX5, FKTMLX, CFID, 
+      BXZD1, BXZD2, BXZD3, 
+      BXZD4)
+    values (#{id,jdbcType=INTEGER}, #{fktmmc,jdbcType=VARCHAR}, #{fktmxx1,jdbcType=VARCHAR}, 
+      #{fktmxx2,jdbcType=VARCHAR}, #{fktmxx3,jdbcType=VARCHAR}, #{fktmxx4,jdbcType=VARCHAR}, 
+      #{fktmxx5,jdbcType=VARCHAR}, #{fktmlx,jdbcType=VARCHAR}, #{cfid,jdbcType=INTEGER}, 
+      #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR}, #{bxzd3,jdbcType=VARCHAR}, 
+      #{bxzd4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.CourseFeedbackQuestion" >
+    insert into course_feedback_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="fktmmc != null" >
+        FKTMMC,
+      </if>
+      <if test="fktmxx1 != null" >
+        FKTMXX1,
+      </if>
+      <if test="fktmxx2 != null" >
+        FKTMXX2,
+      </if>
+      <if test="fktmxx3 != null" >
+        FKTMXX3,
+      </if>
+      <if test="fktmxx4 != null" >
+        FKTMXX4,
+      </if>
+      <if test="fktmxx5 != null" >
+        FKTMXX5,
+      </if>
+      <if test="fktmlx != null" >
+        FKTMLX,
+      </if>
+      <if test="cfid != null" >
+        CFID,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD2,
+      </if>
+      <if test="bxzd3 != null" >
+        BXZD3,
+      </if>
+      <if test="bxzd4 != null" >
+        BXZD4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fktmmc != null" >
+        #{fktmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx1 != null" >
+        #{fktmxx1,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx2 != null" >
+        #{fktmxx2,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx3 != null" >
+        #{fktmxx3,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx4 != null" >
+        #{fktmxx4,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx5 != null" >
+        #{fktmxx5,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmlx != null" >
+        #{fktmlx,jdbcType=VARCHAR},
+      </if>
+      <if test="cfid != null" >
+        #{cfid,jdbcType=INTEGER},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null" >
+        #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null" >
+        #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.CourseFeedbackQuestionExample" resultType="java.lang.Integer" >
+    select count(*) from course_feedback_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course_feedback_question
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.fktmmc != null" >
+        FKTMMC = #{record.fktmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fktmxx1 != null" >
+        FKTMXX1 = #{record.fktmxx1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fktmxx2 != null" >
+        FKTMXX2 = #{record.fktmxx2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fktmxx3 != null" >
+        FKTMXX3 = #{record.fktmxx3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fktmxx4 != null" >
+        FKTMXX4 = #{record.fktmxx4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fktmxx5 != null" >
+        FKTMXX5 = #{record.fktmxx5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fktmlx != null" >
+        FKTMLX = #{record.fktmlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfid != null" >
+        CFID = #{record.cfid,jdbcType=INTEGER},
+      </if>
+      <if test="record.bxzd1 != null" >
+        BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd3 != null" >
+        BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd4 != null" >
+        BXZD4 = #{record.bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course_feedback_question
+    set ID = #{record.id,jdbcType=INTEGER},
+      FKTMMC = #{record.fktmmc,jdbcType=VARCHAR},
+      FKTMXX1 = #{record.fktmxx1,jdbcType=VARCHAR},
+      FKTMXX2 = #{record.fktmxx2,jdbcType=VARCHAR},
+      FKTMXX3 = #{record.fktmxx3,jdbcType=VARCHAR},
+      FKTMXX4 = #{record.fktmxx4,jdbcType=VARCHAR},
+      FKTMXX5 = #{record.fktmxx5,jdbcType=VARCHAR},
+      FKTMLX = #{record.fktmlx,jdbcType=VARCHAR},
+      CFID = #{record.cfid,jdbcType=INTEGER},
+      BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{record.bxzd4,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.CourseFeedbackQuestion" >
+    update course_feedback_question
+    <set >
+      <if test="fktmmc != null" >
+        FKTMMC = #{fktmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx1 != null" >
+        FKTMXX1 = #{fktmxx1,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx2 != null" >
+        FKTMXX2 = #{fktmxx2,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx3 != null" >
+        FKTMXX3 = #{fktmxx3,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx4 != null" >
+        FKTMXX4 = #{fktmxx4,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmxx5 != null" >
+        FKTMXX5 = #{fktmxx5,jdbcType=VARCHAR},
+      </if>
+      <if test="fktmlx != null" >
+        FKTMLX = #{fktmlx,jdbcType=VARCHAR},
+      </if>
+      <if test="cfid != null" >
+        CFID = #{cfid,jdbcType=INTEGER},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null" >
+        BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null" >
+        BXZD4 = #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.CourseFeedbackQuestion" >
+    update course_feedback_question
+    set FKTMMC = #{fktmmc,jdbcType=VARCHAR},
+      FKTMXX1 = #{fktmxx1,jdbcType=VARCHAR},
+      FKTMXX2 = #{fktmxx2,jdbcType=VARCHAR},
+      FKTMXX3 = #{fktmxx3,jdbcType=VARCHAR},
+      FKTMXX4 = #{fktmxx4,jdbcType=VARCHAR},
+      FKTMXX5 = #{fktmxx5,jdbcType=VARCHAR},
+      FKTMLX = #{fktmlx,jdbcType=VARCHAR},
+      CFID = #{cfid,jdbcType=INTEGER},
+      BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{bxzd4,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

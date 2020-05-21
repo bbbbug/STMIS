@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.CategoryMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.Category" >
+    <id column="LBBH" property="lbbh" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="LBMC" property="lbmc" jdbcType="VARCHAR" />
+    <result column="BXZD_1" property="bxzd1" jdbcType="VARCHAR" />
+    <result column="BXZD_2" property="bxzd2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <!-- 管理员 -->
+  <select id="getAllCategory" resultType="Category"><!-- 备选字段1为正在开启的课程类别 -->
+  	select * from category order by ID
+  </select>
+  <update id="updateCategory" parameterType="Category">
+	update category set LBMC = #{LBMC} where LBBH = #{LBBH}
+  </update>
+  <insert id="addCategory" parameterType="Category">
+  	insert into category (LBMC,LBBH,BXZD_1) values (#{LBMC},#{LBBH},#{BXZD_1})
+  </insert>
+  <select id="calCategory" resultType="Integer">
+  	select count(*) from category
+  </select>
+  <delete id="delCategory" parameterType="String">
+  	delete from category where LBBH = #{lbbh}
+  </delete>
+  <update id="removeCategory" parameterType="String">
+  	update category set BXZD_1 = 0 where LBBH = #{lbbh}
+  </update>
+  <update id="setupCategory" parameterType="Category">
+  	update category set BXZD_1 = 1 where LBBH = #{LBBH}
+  </update>
+  <select id="findCategory" resultType="Category">
+  	select * from category where ID = #{id} and LBBH = #{lbbh}
+  </select>
+  <select id="queryRepeatCategory" resultType="Category" parameterType="String">
+  	select * from category where LBBH = #{LBBH}
+  </select>
+  <select id="getCategoryByName" parameterType="Category" resultType="Category">
+  	select * from category where LBMC = #{LBMC}
+  </select>  
+  <!-- 管理员 -->
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    LBBH, ID, LBMC, BXZD_1, BXZD_2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.CategoryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from category
+    where LBBH = #{lbbh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from category
+    where LBBH = #{lbbh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.CategoryExample" >
+    delete from category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.Category" >
+    insert into category (LBBH, ID, LBMC, 
+      BXZD_1, BXZD_2)
+    values (#{lbbh,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{lbmc,jdbcType=VARCHAR}, 
+      #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.Category" >
+    insert into category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="lbbh != null" >
+        LBBH,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="lbmc != null" >
+        LBMC,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="lbbh != null" >
+        #{lbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lbmc != null" >
+        #{lbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.CategoryExample" resultType="java.lang.Integer" >
+    select count(*) from category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update category
+    <set >
+      <if test="record.lbbh != null" >
+        LBBH = #{record.lbbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.lbmc != null" >
+        LBMC = #{record.lbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd1 != null" >
+        BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update category
+    set LBBH = #{record.lbbh,jdbcType=VARCHAR},
+      ID = #{record.id,jdbcType=INTEGER},
+      LBMC = #{record.lbmc,jdbcType=VARCHAR},
+      BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.Category" >
+    update category
+    <set >
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lbmc != null" >
+        LBMC = #{lbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LBBH = #{lbbh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.Category" >
+    update category
+    set ID = #{id,jdbcType=INTEGER},
+      LBMC = #{lbmc,jdbcType=VARCHAR},
+      BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{bxzd2,jdbcType=VARCHAR}
+    where LBBH = #{lbbh,jdbcType=VARCHAR}
+  </update>
+</mapper>

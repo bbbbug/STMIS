@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.CourseOnsiteCreditMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.CourseOnsiteCredit" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="XYZH" property="xyzh" jdbcType="VARCHAR" />
+    <result column="XYMC" property="xymc" jdbcType="VARCHAR" />
+    <result column="XXKCMC" property="xxkcmc" jdbcType="VARCHAR" />
+    <result column="XXKCXF" property="xxkcxf" jdbcType="DOUBLE" />
+    <result column="XXPXID" property="xxpxid" jdbcType="INTEGER" />
+    <result column="XXSKLS" property="xxskls" jdbcType="VARCHAR" />
+    <result column="BXZD1" property="bxzd1" jdbcType="VARCHAR" />
+    <result column="BXZD2" property="bxzd2" jdbcType="VARCHAR" />
+    <result column="BXZD3" property="bxzd3" jdbcType="VARCHAR" />
+    <result column="BXZD4" property="bxzd4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, XYZH, XYMC, XXKCMC, XXKCXF, XXPXID, XXSKLS, BXZD1, BXZD2, BXZD3, BXZD4
+  </sql>
+  
+  <!-- 自定义 -->
+  <!-- 修改时间:2019.7.16,修改内容:添加了bxzd1用于存储部门编号 -->
+  <insert id="addBatchCourseOnsiteCredit" parameterType="java.util.List">
+  	insert into course_onsite_credit (ID, XYZH, XYMC, 
+      XXKCMC, XXKCXF, XXPXID, 
+      XXSKLS,BXZD1)
+    values 
+    <foreach collection="list" item="item" index="index" separator=",">
+    	(#{item.id},#{item.xyzh},#{item.xymc},#{item.xxkcmc},
+    	#{item.xxkcxf},#{item.xxpxid},#{item.xxskls},#{item.bxzd1})
+    </foreach>								  
+  </insert>
+    <!-- 根据学员账号计算对应员工的线下总学分  @author chen 修改时间:2019.7.11-->
+  <select id="selectCourseOnsiteCreditWithEmp" resultType="app.core.po.CourseOnsiteCreditAggregation">
+  	select XYZH,sum(XXKCXF) as xxkczxf from course_onsite_credit GROUP BY XYZH;
+  </select>
+  <!-- 自定义 -->
+  
+  
+  <!-- 自动生成 -->
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.CourseOnsiteCreditExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_onsite_credit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_onsite_credit
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_onsite_credit
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.CourseOnsiteCreditExample" >
+    delete from course_onsite_credit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.CourseOnsiteCredit" >
+    insert into course_onsite_credit (ID, XYZH, XYMC, 
+      XXKCMC, XXKCXF, XXPXID, 
+      XXSKLS, BXZD1, BXZD2, 
+      BXZD3, BXZD4)
+    values (#{id,jdbcType=INTEGER}, #{xyzh,jdbcType=VARCHAR}, #{xymc,jdbcType=VARCHAR}, 
+      #{xxkcmc,jdbcType=VARCHAR}, #{xxkcxf,jdbcType=DOUBLE}, #{xxpxid,jdbcType=INTEGER}, 
+      #{xxskls,jdbcType=VARCHAR}, #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR}, 
+      #{bxzd3,jdbcType=VARCHAR}, #{bxzd4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.CourseOnsiteCredit" >
+    insert into course_onsite_credit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="xyzh != null" >
+        XYZH,
+      </if>
+      <if test="xymc != null" >
+        XYMC,
+      </if>
+      <if test="xxkcmc != null" >
+        XXKCMC,
+      </if>
+      <if test="xxkcxf != null" >
+        XXKCXF,
+      </if>
+      <if test="xxpxid != null" >
+        XXPXID,
+      </if>
+      <if test="xxskls != null" >
+        XXSKLS,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD2,
+      </if>
+      <if test="bxzd3 != null" >
+        BXZD3,
+      </if>
+      <if test="bxzd4 != null" >
+        BXZD4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="xyzh != null" >
+        #{xyzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xymc != null" >
+        #{xymc,jdbcType=VARCHAR},
+      </if>
+      <if test="xxkcmc != null" >
+        #{xxkcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="xxkcxf != null" >
+        #{xxkcxf,jdbcType=DOUBLE},
+      </if>
+      <if test="xxpxid != null" >
+        #{xxpxid,jdbcType=INTEGER},
+      </if>
+      <if test="xxskls != null" >
+        #{xxskls,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null" >
+        #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null" >
+        #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.CourseOnsiteCreditExample" resultType="java.lang.Integer" >
+    select count(*) from course_onsite_credit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course_onsite_credit
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.xyzh != null" >
+        XYZH = #{record.xyzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xymc != null" >
+        XYMC = #{record.xymc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xxkcmc != null" >
+        XXKCMC = #{record.xxkcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xxkcxf != null" >
+        XXKCXF = #{record.xxkcxf,jdbcType=DOUBLE},
+      </if>
+      <if test="record.xxpxid != null" >
+        XXPXID = #{record.xxpxid,jdbcType=INTEGER},
+      </if>
+      <if test="record.xxskls != null" >
+        XXSKLS = #{record.xxskls,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd1 != null" >
+        BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd3 != null" >
+        BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd4 != null" >
+        BXZD4 = #{record.bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course_onsite_credit
+    set ID = #{record.id,jdbcType=INTEGER},
+      XYZH = #{record.xyzh,jdbcType=VARCHAR},
+      XYMC = #{record.xymc,jdbcType=VARCHAR},
+      XXKCMC = #{record.xxkcmc,jdbcType=VARCHAR},
+      XXKCXF = #{record.xxkcxf,jdbcType=DOUBLE},
+      XXPXID = #{record.xxpxid,jdbcType=INTEGER},
+      XXSKLS = #{record.xxskls,jdbcType=VARCHAR},
+      BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{record.bxzd4,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.CourseOnsiteCredit" >
+    update course_onsite_credit
+    <set >
+      <if test="xyzh != null" >
+        XYZH = #{xyzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xymc != null" >
+        XYMC = #{xymc,jdbcType=VARCHAR},
+      </if>
+      <if test="xxkcmc != null" >
+        XXKCMC = #{xxkcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="xxkcxf != null" >
+        XXKCXF = #{xxkcxf,jdbcType=DOUBLE},
+      </if>
+      <if test="xxpxid != null" >
+        XXPXID = #{xxpxid,jdbcType=INTEGER},
+      </if>
+      <if test="xxskls != null" >
+        XXSKLS = #{xxskls,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null" >
+        BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null" >
+        BXZD4 = #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.CourseOnsiteCredit" >
+    update course_onsite_credit
+    set XYZH = #{xyzh,jdbcType=VARCHAR},
+      XYMC = #{xymc,jdbcType=VARCHAR},
+      XXKCMC = #{xxkcmc,jdbcType=VARCHAR},
+      XXKCXF = #{xxkcxf,jdbcType=DOUBLE},
+      XXPXID = #{xxpxid,jdbcType=INTEGER},
+      XXSKLS = #{xxskls,jdbcType=VARCHAR},
+      BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{bxzd4,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.CourseMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.Course" >
+    <id column="KCBH" property="kcbh" jdbcType="VARCHAR" />
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="KCMC" property="kcmc" jdbcType="VARCHAR" />
+    <result column="KCLB" property="kclb" jdbcType="VARCHAR" />
+    <result column="KCJJ" property="kcjj" jdbcType="VARCHAR" />
+    <result column="KCJS" property="kcjs" jdbcType="VARCHAR" />
+    <result column="KCZT" property="kczt" jdbcType="INTEGER" />
+    <result column="KCXF" property="kcxf" jdbcType="INTEGER" />
+    <result column="QXKCBH" property="qxkcbh" jdbcType="VARCHAR" />
+    <result column="XGKCBH" property="xgkcbh" jdbcType="VARCHAR" />
+    <result column="KCLJ" property="kclj" jdbcType="VARCHAR" />
+    <result column="KKSJ" property="kksj" jdbcType="TIMESTAMP" />
+    <result column="JKSJ" property="jksj" jdbcType="TIMESTAMP" />
+    <result column="BXZD_1" property="bxzd1" jdbcType="VARCHAR" />
+    <result column="BXZD_2" property="bxzd2" jdbcType="VARCHAR" />
+    <result column="KCTB" property="kctb" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 管理员 -->
+  <select id="getAllCourse" resultType="Course">
+	select * from course order by ID
+  </select>
+  <select id="getCourseByKCBH" parameterType="String"  resultType="Course">
+	select * from course where KCBH = #{kcbh}
+  </select>
+  <update id="updateCourse" parameterType="Course">
+  	update course set KCMC = #{kcmc},  KCJJ = #{kcjj}, KCJS = #{kcjs}, KCXF = #{kcxf}, KCLB = #{kclb}
+  	where KCBH = #{kcbh}
+  </update>
+  <update id="removeCourse" parameterType="String">
+  	update course set KCZT = 0 where KCBH = #{kcbh}
+  </update>
+  <select id="getUnsetCourse" resultType="Course">
+  	select * from course where KCZT = 0
+  </select>
+  <update id="setupCourse" parameterType="Course">
+  	update course set KCZT = 4 where KCBH = #{kcbh}
+  </update>
+  <!-- 根据课程条件返回课程列表 -->
+  <select id="getCourseByCondition" parameterType="Course" resultType="Course">
+  	select * from course
+  	<where>
+  		<if test="kcjs!=null">
+  			and KCJS like CONCAT(CONCAT('%',#{kcjs},'%'))  			
+  		</if>
+  		<if test="kcmc!=null">
+  			and KCMC like "%"#{kcmc}"%"
+  		</if>
+  		<if test="kclb!=null">
+  			and KCLB=#{kclb}
+  		</if>
+  		<if test="kcbh!=null">
+  			and KCBH=#{kcbh}
+  		</if>
+  	</where>
+  </select>
+  <update id="updateCourseByKCBH" parameterType="Course">
+  	update course set KCZT = #{kczt} where KCBH = #{kcbh}
+  </update>
+  <!-- 管理员 -->
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    KCBH, ID, KCMC, KCLB, KCJJ, KCJS, KCZT, KCXF, QXKCBH, XGKCBH, KCLJ, KKSJ, JKSJ, BXZD_1, 
+    BXZD_2, KCTB
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.CourseExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where KCBH = #{kcbh,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from course
+    where KCBH = #{kcbh,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.CourseExample" >
+    delete from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.Course" >
+    insert into course (KCBH, ID, KCMC, 
+      KCLB, KCJJ, KCJS, KCZT, 
+      KCXF, QXKCBH, XGKCBH, 
+      KCLJ, KKSJ, JKSJ, 
+      BXZD_1, BXZD_2, KCTB)
+    values (#{kcbh,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{kcmc,jdbcType=VARCHAR}, 
+      #{kclb,jdbcType=VARCHAR}, #{kcjj,jdbcType=VARCHAR}, #{kcjs,jdbcType=VARCHAR}, #{kczt,jdbcType=INTEGER}, 
+      #{kcxf,jdbcType=INTEGER}, #{qxkcbh,jdbcType=VARCHAR}, #{xgkcbh,jdbcType=VARCHAR}, 
+      #{kclj,jdbcType=VARCHAR}, #{kksj,jdbcType=TIMESTAMP}, #{jksj,jdbcType=TIMESTAMP}, 
+      #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR}, #{kctb,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.Course" >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="kcbh != null" >
+        KCBH,
+      </if>
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="kcmc != null" >
+        KCMC,
+      </if>
+      <if test="kclb != null" >
+        KCLB,
+      </if>
+      <if test="kcjj != null" >
+        KCJJ,
+      </if>
+      <if test="kcjs != null" >
+        KCJS,
+      </if>
+      <if test="kczt != null" >
+        KCZT,
+      </if>
+      <if test="kcxf != null" >
+        KCXF,
+      </if>
+      <if test="qxkcbh != null" >
+        QXKCBH,
+      </if>
+      <if test="xgkcbh != null" >
+        XGKCBH,
+      </if>
+      <if test="kclj != null" >
+        KCLJ,
+      </if>
+      <if test="kksj != null" >
+        KKSJ,
+      </if>
+      <if test="jksj != null" >
+        JKSJ,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2,
+      </if>
+      <if test="kctb != null" >
+        KCTB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="kcbh != null" >
+        #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="kcmc != null" >
+        #{kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="kclb != null" >
+        #{kclb,jdbcType=VARCHAR},
+      </if>
+      <if test="kcjj != null" >
+        #{kcjj,jdbcType=VARCHAR},
+      </if>
+      <if test="kcjs != null" >
+        #{kcjs,jdbcType=VARCHAR},
+      </if>
+      <if test="kczt != null" >
+        #{kczt,jdbcType=INTEGER},
+      </if>
+      <if test="kcxf != null" >
+        #{kcxf,jdbcType=INTEGER},
+      </if>
+      <if test="qxkcbh != null" >
+        #{qxkcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xgkcbh != null" >
+        #{xgkcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="kclj != null" >
+        #{kclj,jdbcType=VARCHAR},
+      </if>
+      <if test="kksj != null" >
+        #{kksj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jksj != null" >
+        #{jksj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="kctb != null" >
+        #{kctb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.CourseExample" resultType="java.lang.Integer" >
+    select count(*) from course
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course
+    <set >
+      <if test="record.kcbh != null" >
+        KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.kcmc != null" >
+        KCMC = #{record.kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kclb != null" >
+        KCLB = #{record.kclb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcjj != null" >
+        KCJJ = #{record.kcjj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcjs != null" >
+        KCJS = #{record.kcjs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kczt != null" >
+        KCZT = #{record.kczt,jdbcType=INTEGER},
+      </if>
+      <if test="record.kcxf != null" >
+        KCXF = #{record.kcxf,jdbcType=INTEGER},
+      </if>
+      <if test="record.qxkcbh != null" >
+        QXKCBH = #{record.qxkcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xgkcbh != null" >
+        XGKCBH = #{record.xgkcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kclj != null" >
+        KCLJ = #{record.kclj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kksj != null" >
+        KKSJ = #{record.kksj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jksj != null" >
+        JKSJ = #{record.jksj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bxzd1 != null" >
+        BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kctb != null" >
+        KCTB = #{record.kctb,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course
+    set KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      ID = #{record.id,jdbcType=INTEGER},
+      KCMC = #{record.kcmc,jdbcType=VARCHAR},
+      KCLB = #{record.kclb,jdbcType=VARCHAR},
+      KCJJ = #{record.kcjj,jdbcType=VARCHAR},
+      KCJS = #{record.kcjs,jdbcType=VARCHAR},
+      KCZT = #{record.kczt,jdbcType=INTEGER},
+      KCXF = #{record.kcxf,jdbcType=INTEGER},
+      QXKCBH = #{record.qxkcbh,jdbcType=VARCHAR},
+      XGKCBH = #{record.xgkcbh,jdbcType=VARCHAR},
+      KCLJ = #{record.kclj,jdbcType=VARCHAR},
+      KKSJ = #{record.kksj,jdbcType=TIMESTAMP},
+      JKSJ = #{record.jksj,jdbcType=TIMESTAMP},
+      BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR},
+      KCTB = #{record.kctb,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.Course" >
+    update course
+    <set >
+      <if test="id != null" >
+        ID = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="kcmc != null" >
+        KCMC = #{kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="kclb != null" >
+        KCLB = #{kclb,jdbcType=VARCHAR},
+      </if>
+      <if test="kcjj != null" >
+        KCJJ = #{kcjj,jdbcType=VARCHAR},
+      </if>
+      <if test="kcjs != null" >
+        KCJS = #{kcjs,jdbcType=VARCHAR},
+      </if>
+      <if test="kczt != null" >
+        KCZT = #{kczt,jdbcType=INTEGER},
+      </if>
+      <if test="kcxf != null" >
+        KCXF = #{kcxf,jdbcType=INTEGER},
+      </if>
+      <if test="qxkcbh != null" >
+        QXKCBH = #{qxkcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xgkcbh != null" >
+        XGKCBH = #{xgkcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="kclj != null" >
+        KCLJ = #{kclj,jdbcType=VARCHAR},
+      </if>
+      <if test="kksj != null" >
+        KKSJ = #{kksj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jksj != null" >
+        JKSJ = #{jksj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="kctb != null" >
+        KCTB = #{kctb,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where KCBH = #{kcbh,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.Course" >
+    update course
+    set ID = #{id,jdbcType=INTEGER},
+      KCMC = #{kcmc,jdbcType=VARCHAR},
+      KCLB = #{kclb,jdbcType=VARCHAR},
+      KCJJ = #{kcjj,jdbcType=VARCHAR},
+      KCJS = #{kcjs,jdbcType=VARCHAR},
+      KCZT = #{kczt,jdbcType=INTEGER},
+      KCXF = #{kcxf,jdbcType=INTEGER},
+      QXKCBH = #{qxkcbh,jdbcType=VARCHAR},
+      XGKCBH = #{xgkcbh,jdbcType=VARCHAR},
+      KCLJ = #{kclj,jdbcType=VARCHAR},
+      KKSJ = #{kksj,jdbcType=TIMESTAMP},
+      JKSJ = #{jksj,jdbcType=TIMESTAMP},
+      BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{bxzd2,jdbcType=VARCHAR},
+      KCTB = #{kctb,jdbcType=VARCHAR}
+    where KCBH = #{kcbh,jdbcType=VARCHAR}
+  </update>
+  <select id="selectChoose" parameterType="app.core.po.Page" resultMap="BaseResultMap">
+    select * from Course where kczt=4 order by id
+    <if test="startPage!=null and size!=null">
+        limit #{startPage},#{size}
+    </if>
+  </select>
+  <select id="searchCourse" parameterType="app.core.po.Course" resultMap="BaseResultMap">
+    select * from Course 
+     	<where>
+     		kczt=4 
+     		<if test="kcmc!= null and kcmc!= ''">
+           	 and (kcmc like CONCAT(CONCAT('%',#{kcmc}),'%') or kcjj like CONCAT(CONCAT('%',#{kcmc}),'%') or KCJS like CONCAT(CONCAT('%',#{kcmc}),'%'))
+    		</if>
+     	</where>
+  </select>
+  
+  <select id="showByKclb" parameterType="app.core.po.Course" resultMap="BaseResultMap">
+    select * from Course
+     	<where>
+     		 kczt=4
+     		<if test="kclb!= null and kclb!= ''">
+             and kclb = #{kclb}
+     		</if>
+     	</where>
+  </select>
+  
+    <select id="showAllCourse" resultMap="BaseResultMap">
+    select * from Course
+     	<where>
+     		 kczt=4
+     	</where>
+  </select>
+  
+    <select id="adminShowCourse" parameterType="app.core.po.Course" resultMap="BaseResultMap">
+    select * from Course
+     	<where>
+     		<if test="kcjs!= null and kcjs!= ''">
+             	kcjs = #{kcjs}
+     		</if>
+     	</where>
+     	order by kczt
+  </select>
+  
+  <select id="adminCourse" parameterType="app.core.po.Course" resultMap="BaseResultMap">
+    select * from Course
+     	<where>
+     		<if test="kcbh!= null and kcbh!= ''">
+             kcbh = #{kcbh}
+     		</if>
+     	</where>
+  </select>
+ <update id="adminUpdateCourse" parameterType="app.core.po.Course" >
+    update course
+    set
+      <if test="kcmc != null" >
+        KCMC = #{kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="kclb != null" >
+         KCLB = #{kclb,jdbcType=VARCHAR},
+      </if>
+     <if test="kcjj != null" >
+        KCJJ = #{kcjj,jdbcType=VARCHAR},
+      </if>
+      <if test="kcjs != null" >
+         KCJS = #{kcjs,jdbcType=VARCHAR},
+      </if>
+      <if test="kcxf != null" >
+      	 KCXF = #{kcxf,jdbcType=INTEGER}
+      </if>
+      <if test="kctb != null" >
+         ,KCTB = #{kctb,jdbcType=VARCHAR}
+      </if>
+    where KCBH = #{kcbh,jdbcType=VARCHAR}
+  </update>
+  <select id="adminSearchCourse" parameterType="app.core.po.Course" resultMap="BaseResultMap">
+    select * from Course
+     	<where>
+     		KCJS = #{kcjs,jdbcType=VARCHAR}
+	     	<if test="kclb != null and kclb!= ''" >
+			  and  KCLB = #{kclb,jdbcType=VARCHAR} 
+		    </if>
+     		<if test="kcmc!= null and kcmc!= ''">
+             and (kcmc like CONCAT(CONCAT('%',#{kcmc}),'%') or kcjj like CONCAT(CONCAT('%',#{kcmc}),'%'))
+     		</if>
+     	</where>
+     	order by kczt
+  </select>
+  
+  <select id="recommendCourse" parameterType="app.core.po.Course" resultMap="BaseResultMap">
+    select * from Course
+     	<where>
+     		kczt=4
+     		<if test="kclb!= null and kclb!= ''">
+             and kclb = #{kclb}
+    		</if>
+     	</where>
+     	ORDER BY RAND() LIMIT 5
+  </select>
+  <select id="showNewCourse" parameterType="app.core.po.Page" resultMap="BaseResultMap">
+    select * from Course where kczt=4 order by id desc
+    <if test="startPage!=null and size!=null">
+        limit 8
+    </if>
+  </select>
+   <update id="addKSinfo" parameterType="app.core.po.Course" >
+    update course
+    set
+      BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{bxzd2,jdbcType=VARCHAR}
+    where KCBH = #{kcbh,jdbcType=VARCHAR}
+  </update>
+  <select id="selectCourseByKcbh" resultMap="BaseResultMap" parameterType="app.core.po.Course" >
+    select 
+    <include refid="Base_Column_List" />
+    from course 
+    where kczt=4 and KCBH = #{kcbh,jdbcType=VARCHAR}
+  </select>
+  <select id="selectCourseByKcjs" resultMap="BaseResultMap" parameterType="app.core.po.Course" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where KCJS = #{kcjs,jdbcType=VARCHAR}
+  </select>
+  
+
+ <!-- author by Jaylin_yang 2019.7.9 -->
+ <select id="selectLbmcByKcbh" parameterType="java.lang.String" resultMap="BaseResultMap">
+   select * from course where kcbh=#{kcbh,jdbcType=VARCHAR}
+ </select>
+    <delete id="adminRemoveCourse" parameterType="java.lang.String" >
+    delete from course
+    where KCBH = #{kcbh,jdbcType=VARCHAR}
+  </delete>
+</mapper>

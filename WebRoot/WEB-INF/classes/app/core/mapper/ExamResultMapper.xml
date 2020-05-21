@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.ExamResultMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.ExamResult" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="stid" property="stid" jdbcType="BIGINT" />
+    <result column="answer" property="answer" jdbcType="VARCHAR" />
+    <result column="ygzh" property="ygzh" jdbcType="VARCHAR" />
+    <result column="kcbh" property="kcbh" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, stid, answer, ygzh, kcbh
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.ExamResultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exam_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from exam_result
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from exam_result
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.ExamResultExample" >
+    delete from exam_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.ExamResult" >
+    insert into exam_result (id, stid, answer, 
+      ygzh, kcbh)
+    values (#{id,jdbcType=BIGINT}, #{stid,jdbcType=BIGINT}, #{answer,jdbcType=VARCHAR}, 
+      #{ygzh,jdbcType=VARCHAR}, #{kcbh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.ExamResult" >
+    insert into exam_result
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stid != null" >
+        stid,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="ygzh != null" >
+        ygzh,
+      </if>
+      <if test="kcbh != null" >
+        kcbh,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="stid != null" >
+        #{stid,jdbcType=BIGINT},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="ygzh != null" >
+        #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcbh != null" >
+        #{kcbh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.ExamResultExample" resultType="java.lang.Integer" >
+    select count(*) from exam_result
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update exam_result
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.stid != null" >
+        stid = #{record.stid,jdbcType=BIGINT},
+      </if>
+      <if test="record.answer != null" >
+        answer = #{record.answer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygzh != null" >
+        ygzh = #{record.ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcbh != null" >
+        kcbh = #{record.kcbh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update exam_result
+    set id = #{record.id,jdbcType=BIGINT},
+      stid = #{record.stid,jdbcType=BIGINT},
+      answer = #{record.answer,jdbcType=VARCHAR},
+      ygzh = #{record.ygzh,jdbcType=VARCHAR},
+      kcbh = #{record.kcbh,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.ExamResult" >
+    update exam_result
+    <set >
+      <if test="stid != null" >
+        stid = #{stid,jdbcType=BIGINT},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="ygzh != null" >
+        ygzh = #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcbh != null" >
+        kcbh = #{kcbh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.ExamResult" >
+    update exam_result
+    set stid = #{stid,jdbcType=BIGINT},
+      answer = #{answer,jdbcType=VARCHAR},
+      ygzh = #{ygzh,jdbcType=VARCHAR},
+      kcbh = #{kcbh,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

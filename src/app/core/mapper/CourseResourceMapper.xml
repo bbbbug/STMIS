@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.CourseResourceMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.CourseResource" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="KCBH" property="kcbh" jdbcType="VARCHAR" />
+    <result column="KCMC" property="kcmc" jdbcType="VARCHAR" />
+    <result column="ZJXH" property="zjxh" jdbcType="INTEGER" />
+    <result column="ZJMC" property="zjmc" jdbcType="VARCHAR" />
+    <result column="ZYLX" property="zylx" jdbcType="VARCHAR" />
+    <result column="ZYLJ" property="zylj" jdbcType="VARCHAR" />
+    <result column="BXZD_1" property="bxzd_1" jdbcType="VARCHAR" />
+    <result column="BXZD_2" property="bxzd_2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 管理员 -->
+  <select id="getAllResource" resultMap="BaseResultMap">
+  	select * from course_resource order by ID
+  </select>
+  <select id="findCourseResource" resultType="CourseResource">
+  	select * from course_resource where ID = #{id} and KCBH = #{kcbh}
+  </select>
+  <update id="passCourseResource" parameterType="CourseResource">
+  	update course_resource set BXZD_1 = 1 where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="refuseCourseResource" parameterType="CourseResource">
+  	update course_resource set BXZD_1 = 2 where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="batchPassCourseResource" parameterType="Integer">
+  	update course_resource set BXZD_1 = 1 where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="batchRefuseCourseResource" parameterType="Integer">
+  	update course_resource set BXZD_1 = 2 where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getCourseResourceByCondition" parameterType="CourseResource" resultType="CourseResource">
+  	select * from course_resource
+  	<where>
+  		<if test="kcmc!=null">
+  			and KCMC like CONCAT(CONCAT('%',#{kcmc},'%'))  			
+  		</if>
+  		<if test="kcbh!=null">
+  			and KCBH like CONCAT(CONCAT('%',#{kcbh},'%'))  			
+  		</if>
+  		<if test="zjmc!=null">
+  			and ZJMC like CONCAT(CONCAT('%',#{zjmc},'%'))  			
+  		</if>
+  		<if test="zylx!=null">
+  			and ZYLX like CONCAT(CONCAT('%',#{zylx},'%'))  			
+  		</if>
+  	</where>
+  </select>
+  <select id="selectCourseResourceByKCBH" resultType="CourseResource" parameterType="CourseResource">
+  	select * from course_resource
+  	<where>
+  		<if test="kcbh!=null">
+  			and KCBH = #{kcbh} and (BXZD_1 = 2 or BXZD_1 is null)
+  		</if>  		
+  	</where>
+  </select>
+  <!-- 管理员 -->
+  <!-- 自定义 -->
+  <!-- 修改对应课程的所有课程状态 @author chen 修改时间 2019.7.12 -->
+  <update id="updateCourseResourceStatus" parameterType="app.core.po.CourseResource">
+  	update course_resource set BXZD_1 = #{bxzd_1} where KCBH = #{kcbh}
+  </update>
+  <!-- 自定义 -->
+  
+  
+  <!-- 自动生成 -->
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, KCBH, KCMC, ZJXH, ZJMC, ZYLX, ZYLJ, BXZD_1, BXZD_2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.CourseResourceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from course_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_resource
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_resource
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.CourseResourceExample" >
+    delete from course_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.CourseResource" >
+    insert into course_resource (ID, KCBH, KCMC, 
+      ZJXH, ZJMC, ZYLX, ZYLJ)
+    values (#{id,jdbcType=INTEGER}, #{kcbh,jdbcType=VARCHAR}, #{kcmc,jdbcType=VARCHAR}, 
+      #{zjxh,jdbcType=INTEGER}, #{zjmc,jdbcType=VARCHAR}, #{zylx,jdbcType=VARCHAR}, #{zylj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.CourseResource" >
+    insert into course_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="kcbh != null" >
+        KCBH,
+      </if>
+      <if test="kcmc != null" >
+        KCMC,
+      </if>
+      <if test="zjxh != null" >
+        ZJXH,
+      </if>
+      <if test="zjmc != null" >
+        ZJMC,
+      </if>
+      <if test="zylx != null" >
+        ZYLX,
+      </if>
+      <if test="zylj != null" >
+        ZYLJ,
+      </if>
+      <if test="bxzd_1 != null" >
+        BXZD_1,
+      </if>
+      <if test="bxzd_2 != null" >
+        BXZD_2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="kcbh != null" >
+        #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcmc != null" >
+        #{kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zjxh != null" >
+        #{zjxh,jdbcType=INTEGER},
+      </if>
+      <if test="zjmc != null" >
+        #{zjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zylx != null" >
+        #{zylx,jdbcType=VARCHAR},
+      </if>
+      <if test="zylj != null" >
+        #{zylj,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_1 != null" >
+        #{bxzd_1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_2 != null" >
+        #{bxzd_2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.CourseResourceExample" resultType="java.lang.Integer" >
+    select count(*) from course_resource
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update course_resource
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.kcbh != null" >
+        KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcmc != null" >
+        KCMC = #{record.kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjxh != null" >
+        ZJXH = #{record.zjxh,jdbcType=INTEGER},
+      </if>
+      <if test="record.zjmc != null" >
+        ZJMC = #{record.zjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zylx != null" >
+        ZYLX = #{record.zylx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zylj != null" >
+        ZYLJ = #{record.zylj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd_1 != null" >
+        BXZD_1 = #{record.bxzd_1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd_2 != null" >
+        BXZD_2 = #{record.bxzd_2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update course_resource
+    set ID = #{record.id,jdbcType=INTEGER},
+      KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      KCMC = #{record.kcmc,jdbcType=VARCHAR},
+      ZJXH = #{record.zjxh,jdbcType=INTEGER},
+      ZJMC = #{record.zjmc,jdbcType=VARCHAR},
+      ZYLX = #{record.zylx,jdbcType=VARCHAR},
+      ZYLJ = #{record.zylj,jdbcType=VARCHAR},
+      BXZD_1 = #{record.bxzd_1,jdbcType=VARCHAR},
+      BXZD_2 = #{record.bxzd_2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.CourseResource" >
+    update course_resource
+    <set >
+      <if test="kcbh != null" >
+        KCBH = #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcmc != null" >
+        KCMC = #{kcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zjxh != null" >
+        ZJXH = #{zjxh,jdbcType=INTEGER},
+      </if>
+      <if test="zjmc != null" >
+        ZJMC = #{zjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zylx != null" >
+        ZYLX = #{zylx,jdbcType=VARCHAR},
+      </if>
+      <if test="zylj != null" >
+        ZYLJ = #{zylj,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_1 != null" >
+        BXZD_1 = #{bxzd_1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd_2 != null" >
+        BXZD_2 = #{bxzd_2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.CourseResource" >
+    update course_resource
+    set KCBH = #{kcbh,jdbcType=VARCHAR},
+      KCMC = #{kcmc,jdbcType=VARCHAR},
+      ZJXH = #{zjxh,jdbcType=INTEGER},
+      ZJMC = #{zjmc,jdbcType=VARCHAR},
+      ZYLX = #{zylx,jdbcType=VARCHAR},
+      ZYLJ = #{zylj,jdbcType=VARCHAR},
+      BXZD_1 = #{bxzd_1,jdbcType=VARCHAR},
+      BXZD_2 = #{bxzd_2,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByKCBH" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_resource 
+    where kcmc is not null and zylj is not null and KCBH = #{kcbh} 
+  </select>
+  
+  <select id="adminCourseResource" resultMap="BaseResultMap" parameterType="app.core.po.CourseResource" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_resource
+    where KCBH = #{kcbh}
+  </select>
+  
+  <delete id="adminRemoveCourseResource" parameterType="app.core.po.CourseResource" >
+    delete from course_resource
+    where kcbh = #{kcbh} and zjxh = #{zjxh}
+ </delete>
+ 
+   <select id="courseResourceEdit" resultMap="BaseResultMap" parameterType="app.core.po.CourseResource" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_resource
+    where KCBH = #{kcbh} and ZJXH=#{zjxh}
+  </select>
+ <update id="adminUpdateResourceCourse" parameterType="app.core.po.CourseResource" >
+    update course_resource set ZJMC = #{zjmc,jdbcType=VARCHAR}
+      <if test="zylj != null" >
+        ,ZYLJ = #{zylj,jdbcType=VARCHAR}
+      </if>
+    where kcbh=#{kcbh} and zjxh=#{zjxh}
+  </update>
+
+  <select id="selectCourseResource" resultMap="BaseResultMap" parameterType="app.core.po.CourseResource" >
+    select * from course_resource where kcbh=#{kcbh}  order by zjxh desc limit 1
+  </select>
+</mapper>

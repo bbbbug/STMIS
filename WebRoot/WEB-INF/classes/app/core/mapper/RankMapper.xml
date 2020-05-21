@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.RankMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.Rank" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+    <result column="JSBH" property="jsbh" jdbcType="INTEGER" />
+    <result column="JSZT" property="jszt" jdbcType="VARCHAR" />
+    <result column="YGXM" property="ygxm" jdbcType="VARCHAR" />
+    <result column="YGJSFS" property="ygjsfs" jdbcType="VARCHAR" />
+    <result column="YGJSPM" property="ygjspm" jdbcType="VARCHAR" />
+    <result column="BXZD_1" property="bxzd1" jdbcType="VARCHAR" />
+    <result column="BXZD_2" property="bxzd2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, YGZH, JSBH, JSZT, YGXM, YGJSFS, YGJSPM, BXZD_1, BXZD_2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.RankExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rank
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rank
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.RankExample" >
+    delete from rank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.Rank" >
+    insert into rank (ID, YGZH, JSBH, 
+      JSZT, YGXM, YGJSFS, 
+      YGJSPM, BXZD_1, BXZD_2
+      )
+    values (#{id,jdbcType=INTEGER}, #{ygzh,jdbcType=VARCHAR}, #{jsbh,jdbcType=INTEGER}, 
+      #{jszt,jdbcType=VARCHAR}, #{ygxm,jdbcType=VARCHAR}, #{ygjsfs,jdbcType=VARCHAR}, 
+      #{ygjspm,jdbcType=VARCHAR}, #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.Rank" >
+    insert into rank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ygzh != null" >
+        YGZH,
+      </if>
+      <if test="jsbh != null" >
+        JSBH,
+      </if>
+      <if test="jszt != null" >
+        JSZT,
+      </if>
+      <if test="ygxm != null" >
+        YGXM,
+      </if>
+      <if test="ygjsfs != null" >
+        YGJSFS,
+      </if>
+      <if test="ygjspm != null" >
+        YGJSPM,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygzh != null" >
+        #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsbh != null" >
+        #{jsbh,jdbcType=INTEGER},
+      </if>
+      <if test="jszt != null" >
+        #{jszt,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxm != null" >
+        #{ygxm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygjsfs != null" >
+        #{ygjsfs,jdbcType=VARCHAR},
+      </if>
+      <if test="ygjspm != null" >
+        #{ygjspm,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.RankExample" resultType="java.lang.Integer" >
+    select count(*) from rank
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rank
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ygzh != null" >
+        YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsbh != null" >
+        JSBH = #{record.jsbh,jdbcType=INTEGER},
+      </if>
+      <if test="record.jszt != null" >
+        JSZT = #{record.jszt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygxm != null" >
+        YGXM = #{record.ygxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygjsfs != null" >
+        YGJSFS = #{record.ygjsfs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygjspm != null" >
+        YGJSPM = #{record.ygjspm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd1 != null" >
+        BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rank
+    set ID = #{record.id,jdbcType=INTEGER},
+      YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      JSBH = #{record.jsbh,jdbcType=INTEGER},
+      JSZT = #{record.jszt,jdbcType=VARCHAR},
+      YGXM = #{record.ygxm,jdbcType=VARCHAR},
+      YGJSFS = #{record.ygjsfs,jdbcType=VARCHAR},
+      YGJSPM = #{record.ygjspm,jdbcType=VARCHAR},
+      BXZD_1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{record.bxzd2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.Rank" >
+    update rank
+    <set >
+      <if test="ygzh != null" >
+        YGZH = #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="jsbh != null" >
+        JSBH = #{jsbh,jdbcType=INTEGER},
+      </if>
+      <if test="jszt != null" >
+        JSZT = #{jszt,jdbcType=VARCHAR},
+      </if>
+      <if test="ygxm != null" >
+        YGXM = #{ygxm,jdbcType=VARCHAR},
+      </if>
+      <if test="ygjsfs != null" >
+        YGJSFS = #{ygjsfs,jdbcType=VARCHAR},
+      </if>
+      <if test="ygjspm != null" >
+        YGJSPM = #{ygjspm,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD_2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.Rank" >
+    update rank
+    set YGZH = #{ygzh,jdbcType=VARCHAR},
+      JSBH = #{jsbh,jdbcType=INTEGER},
+      JSZT = #{jszt,jdbcType=VARCHAR},
+      YGXM = #{ygxm,jdbcType=VARCHAR},
+      YGJSFS = #{ygjsfs,jdbcType=VARCHAR},
+      YGJSPM = #{ygjspm,jdbcType=VARCHAR},
+      BXZD_1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD_2 = #{bxzd2,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

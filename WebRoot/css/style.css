@@ -1,0 +1,188 @@
+/*全局属性*/
+/**
+ * 描述：通用样式表
+ * 作者：陈思明
+ */
+*{
+	padding: 0px;
+	margin: 0px;
+}
+.navbar-text{
+	font-style: italic;
+}
+/*页面导航栏*/
+.index_nav{
+	margin-left: 5%;;
+	margin-top: 3%;
+}
+/*页面多行菜单栏*/
+.index_loop{
+	margin-left: 6%;
+	width: 90%;
+	height: 28rem;
+}
+/*详情页主体*/
+.index_detail_body{
+	width: 90%;
+	margin-left: 6%;
+}
+/*个人主页主题*/
+.homepage_body{
+	width: 90%;
+	margin-left: 6%;
+}
+/*子标题颜色*/
+.sub_title{
+	color: #000000;
+}
+/*子标题图片*/
+.sub_img{
+	width: 15rem;
+	height: 10rem;
+}
+/*子标题主题部分*/
+.sub_body{
+	padding: 1rem;
+	background-color: #F7F7F7;
+}
+/*分页器*/
+.pager_divide{
+	margin-left: 40%;
+	text-align: center;;
+}
+/*登录列表*/
+.login_list{
+	width: 80%;
+	margin-left: 6rem;
+}
+/*视频观看页面背景*/
+.video_bg{
+	background-color: #F5F5F5;
+	width: 100%; 
+	height: 40rem;
+}
+/*视频列表预览*/
+.video_list{
+	position: absolute;
+	top: 8.5rem;
+	left: 126rem;
+}
+.video_list li{
+	height: 41px;
+	width: 10rem;
+}
+/*个人主页*/
+.my{
+	width: 100%;
+	margin: 0px;
+	display: inline-flex;
+	/*clear: both;
+	display: block;*/
+	/*float: left;*/
+}
+.my_pic{/*个人主页头像*/
+	width: 15rem;
+	height: 15rem;
+	border-radius: 50%;
+	display: inline-flex;
+}
+.my_course{/*我的课程*/
+	
+}
+/*个人信息*/
+.my_info{
+	width: 15rem;
+	height: 15rem;
+/*	display: inline-flex;*/
+}
+/*个人讨论区*/
+.my_discuss{
+	margin-left: 8%;
+}
+/*个人主页列表菜单*/
+.homepage_list{
+	margin-top: 0px;
+	width: 20rem;
+	display: inline-flex;
+}
+.kcxtb img{
+	
+	margin-left: 5%;
+	width: 350px;
+	height: 200px;
+	float: left;
+}
+
+/**/
+#Tab{
+	margin: 10px 0px 10px 10px;
+	width: 85%;
+	border: 1px solid #31B0D5;
+    margin-left: 5%;
+	height:1000px;
+}
+#menubox{
+	height: 45px;
+	border-bottom: 1px solid #15a8eb;
+	background: #15A8EB;
+}
+#menubox ul{
+	list-style: none;
+	margin: 7px 10px;
+	padding: 0;
+	position: absolute;
+}
+#menubox ul li{
+	float: left;
+	background: #64B8E4;
+	line-height: 34px;
+	display: block;
+	cursor: pointer;
+	width: 100px;
+	text-align: center;
+	color: #fff;
+	font-weight: bold;
+	border-top: 1px solid #64B8E4;
+	border-left: 1px solid #64B8E4;
+	border-right: 1px solid #64B8E4;
+}
+#menubox ul li.hover{
+	background: #fff;
+	border-bottom: 1px solid #fff;
+	color: #147AB8;
+}
+#contentbox{
+	clear: both;
+	margin: 0px;
+	border-top: none;
+	height: 181px;
+	padding-top: 8px;
+}
+#contentbox ul{
+	list-style: none;
+	margin: 7px;
+	padding: 0;
+}
+#contentbox ul li{
+	line-height: 24px;
+	border-bottom: 1px dotted #ccc;
+	text-align: left;
+	list-style-type: circle;
+	margin-left: 15px;	
+}
+/*首页*/
+.classify-label{
+	margin-left: 2%;
+	font-weight: normal;
+	font-size: 16px;
+}
+.href-color:hover{
+	color: #C9302C;
+}
+.video_picture{
+	width: 100%;
+}
+.head_label{
+	margin-left: 6%;
+	width: 90%;	
+}

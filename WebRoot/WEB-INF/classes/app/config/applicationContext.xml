@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.1.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+    http://mybatis.org/schema/mybatis-spring
+    http://mybatis.org/schema/mybatis-spring.xsd">
+    
+<!-- mybatis:scan会将app.core.mapper包里的所有接口当做mapper配置,之后可以自动引入mapper类 -->
+   	<mybatis:scan base-package="app.core.mapper"/>
+   	<!-- 扫描app.core包下面的java文件,有Spring的相关注解类,则把这些类注册为Spring的bean -->
+   	<context:component-scan base-package="app.core"/>
+   	<!-- 使用PropertyOverrideConfigurer后处理器加载数据源参数 -->
+	<context:property-override location="classpath:app/config/db.properties"/>
+	<!-- 配置c3p0数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"/>
+	<!-- 配置SqlSessionFactory,org.mybatis.spring.SqlSessionFactoryBean是Mybatis整合Spring的bean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" p:dataSource-ref="dataSource">
+		<property name="typeAliasesPackage" value="app.core.po"/>
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:app/core/mapper/*.xml"/>
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="app.core.mapper"/>
+	</bean>
+	<!-- JDBC事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource"/>
+	<!-- 启用支持annotation注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>

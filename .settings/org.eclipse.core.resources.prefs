@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//WebRoot/css/style1.css=UTF-8
+encoding//WebRoot/index.jsp=UTF-8
+encoding//src/app/core/controller/CourseController.java=UTF-8
+encoding//src/app/core/controller/ExaminationController.java=UTF-8
+encoding//src/app/core/controller/UserController.java=UTF-8
+encoding//src/app/core/mapper/CourseMapper.java=UTF-8
+encoding//src/app/core/service/impl/ExamServiceImpl.java=UTF-8
+encoding/<project>=UTF-8

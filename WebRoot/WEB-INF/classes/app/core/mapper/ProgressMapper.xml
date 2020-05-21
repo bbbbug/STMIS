@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.ProgressMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.Progress" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+    <result column="KCBH" property="kcbh" jdbcType="VARCHAR" />
+    <result column="ZJXH" property="zjxh" jdbcType="INTEGER" />
+    <result column="KCJD" property="kcjd" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, YGZH, KCBH, ZJXH, KCJD
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.ProgressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from progress
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from progress
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from progress
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.ProgressExample" >
+    delete from progress
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.Progress" >
+    insert into progress (ID, YGZH, KCBH, 
+      ZJXH, KCJD)
+    values (#{id,jdbcType=INTEGER}, #{ygzh,jdbcType=VARCHAR}, #{kcbh,jdbcType=VARCHAR}, 
+      #{zjxh,jdbcType=INTEGER}, #{kcjd,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.Progress" >
+    insert into progress
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ygzh != null" >
+        YGZH,
+      </if>
+      <if test="kcbh != null" >
+        KCBH,
+      </if>
+      <if test="zjxh != null" >
+        ZJXH,
+      </if>
+      <if test="kcjd != null" >
+        KCJD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygzh != null" >
+        #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcbh != null" >
+        #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="zjxh != null" >
+        #{zjxh,jdbcType=INTEGER},
+      </if>
+      <if test="kcjd != null" >
+        #{kcjd,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.ProgressExample" resultType="java.lang.Integer" >
+    select count(*) from progress
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update progress
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ygzh != null" >
+        YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.kcbh != null" >
+        KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zjxh != null" >
+        ZJXH = #{record.zjxh,jdbcType=INTEGER},
+      </if>
+      <if test="record.kcjd != null" >
+        KCJD = #{record.kcjd,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update progress
+    set ID = #{record.id,jdbcType=INTEGER},
+      YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      KCBH = #{record.kcbh,jdbcType=VARCHAR},
+      ZJXH = #{record.zjxh,jdbcType=INTEGER},
+      KCJD = #{record.kcjd,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.Progress" >
+    update progress
+    <set >
+      <if test="ygzh != null" >
+        YGZH = #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="kcbh != null" >
+        KCBH = #{kcbh,jdbcType=VARCHAR},
+      </if>
+      <if test="zjxh != null" >
+        ZJXH = #{zjxh,jdbcType=INTEGER},
+      </if>
+      <if test="kcjd != null" >
+        KCJD = #{kcjd,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.Progress" >
+    update progress
+    set YGZH = #{ygzh,jdbcType=VARCHAR},
+      KCBH = #{kcbh,jdbcType=VARCHAR},
+      ZJXH = #{zjxh,jdbcType=INTEGER},
+      KCJD = #{kcjd,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteProgress" parameterType="app.core.po.Progress" >
+    delete from progress
+    where ygzh = #{ygzh,jdbcType=VARCHAR}  and kcbh=#{kcbh,jdbcType=VARCHAR}
+  </delete>
+   <update id="proKCJD" parameterType="app.core.po.Progress" >
+    update progress
+    set KCJD = 1
+    where KCBH = #{kcbh,jdbcType=VARCHAR} and ZJXH = #{zjxh,jdbcType=INTEGER}
+  </update>
+  <select id="selectCourseKCJD" parameterType="app.core.po.Progress" resultType="java.lang.Integer" >
+    select count(*) from progress
+    where KCBH = #{kcbh,jdbcType=VARCHAR} and ygzh = #{ygzh,jdbcType=VARCHAR} and kcjd=1
+  </select>
+  <select id="selectCourseCount" parameterType="app.core.po.Progress" resultType="java.lang.Integer" >
+    select count(*) from progress
+    where KCBH = #{kcbh,jdbcType=VARCHAR} and ygzh = #{ygzh,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectProgress" parameterType="app.core.po.Progress" resultType="app.core.po.Progress" >
+    select * from progress
+    where KCBH = #{kcbh,jdbcType=VARCHAR} and ygzh = #{ygzh,jdbcType=VARCHAR}
+  </select>
+</mapper>

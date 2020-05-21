@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.core.mapper.GradeMapper" >
+  <resultMap id="BaseResultMap" type="app.core.po.Grade" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+    <result column="YGZXF" property="ygzxf" jdbcType="DOUBLE" />
+    <result column="YGBXXF" property="ygbxxf" jdbcType="DOUBLE" />
+    <result column="YGXXXF" property="ygxxxf" jdbcType="DOUBLE" />
+    <result column="KSDFSJ" property="ksdfsj" jdbcType="TIMESTAMP" />
+    <result column="MNKSSJ" property="mnkssj" jdbcType="TIMESTAMP" />
+    <result column="BXZD1" property="bxzd1" jdbcType="VARCHAR" />
+    <result column="BXZD2" property="bxzd2" jdbcType="VARCHAR" />
+    <result column="BXZD3" property="bxzd3" jdbcType="VARCHAR" />
+    <result column="BXZD4" property="bxzd4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, YGZH, YGZXF, YGBXXF, YGXXXF, KSDFSJ, MNKSSJ, BXZD1, BXZD2, BXZD3, BXZD4
+  </sql>
+    <!-- 自定义 -->
+  <!-- 批量修改员工的线下学分信息 @author chen 修改时间:2019.7.11-->
+  <update id="updateBatchGradeWithEmp" parameterType="java.util.List">
+  	<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update grade set BXZD3 = #{item.xxkczxf} where YGZH = #{item.xyzh}       
+    </foreach> 
+  </update>
+  <!-- 自定义 -->
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="app.core.po.GradeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from grade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from grade
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from grade
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="app.core.po.GradeExample" >
+    delete from grade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="app.core.po.Grade" >
+    insert into grade (ID, YGZH, YGZXF, 
+      YGBXXF, YGXXXF, KSDFSJ, 
+      MNKSSJ, BXZD1, BXZD2, 
+      BXZD3, BXZD4)
+    values (#{id,jdbcType=INTEGER}, #{ygzh,jdbcType=VARCHAR}, #{ygzxf,jdbcType=DOUBLE}, 
+      #{ygbxxf,jdbcType=DOUBLE}, #{ygxxxf,jdbcType=DOUBLE}, #{ksdfsj,jdbcType=TIMESTAMP}, 
+      #{mnkssj,jdbcType=TIMESTAMP}, #{bxzd1,jdbcType=VARCHAR}, #{bxzd2,jdbcType=VARCHAR}, 
+      #{bxzd3,jdbcType=VARCHAR}, #{bxzd4,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="app.core.po.Grade" >
+    insert into grade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ygzh != null" >
+        YGZH,
+      </if>
+      <if test="ygzxf != null" >
+        YGZXF,
+      </if>
+      <if test="ygbxxf != null" >
+        YGBXXF,
+      </if>
+      <if test="ygxxxf != null" >
+        YGXXXF,
+      </if>
+      <if test="ksdfsj != null" >
+        KSDFSJ,
+      </if>
+      <if test="mnkssj != null" >
+        MNKSSJ,
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD1,
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD2,
+      </if>
+      <if test="bxzd3 != null" >
+        BXZD3,
+      </if>
+      <if test="bxzd4 != null" >
+        BXZD4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ygzh != null" >
+        #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygzxf != null" >
+        #{ygzxf,jdbcType=DOUBLE},
+      </if>
+      <if test="ygbxxf != null" >
+        #{ygbxxf,jdbcType=DOUBLE},
+      </if>
+      <if test="ygxxxf != null" >
+        #{ygxxxf,jdbcType=DOUBLE},
+      </if>
+      <if test="ksdfsj != null" >
+        #{ksdfsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mnkssj != null" >
+        #{mnkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bxzd1 != null" >
+        #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null" >
+        #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null" >
+        #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="app.core.po.GradeExample" resultType="java.lang.Integer" >
+    select count(*) from grade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update grade
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ygzh != null" >
+        YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ygzxf != null" >
+        YGZXF = #{record.ygzxf,jdbcType=DOUBLE},
+      </if>
+      <if test="record.ygbxxf != null" >
+        YGBXXF = #{record.ygbxxf,jdbcType=DOUBLE},
+      </if>
+      <if test="record.ygxxxf != null" >
+        YGXXXF = #{record.ygxxxf,jdbcType=DOUBLE},
+      </if>
+      <if test="record.ksdfsj != null" >
+        KSDFSJ = #{record.ksdfsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mnkssj != null" >
+        MNKSSJ = #{record.mnkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bxzd1 != null" >
+        BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd2 != null" >
+        BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd3 != null" >
+        BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bxzd4 != null" >
+        BXZD4 = #{record.bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update grade
+    set ID = #{record.id,jdbcType=INTEGER},
+      YGZH = #{record.ygzh,jdbcType=VARCHAR},
+      YGZXF = #{record.ygzxf,jdbcType=DOUBLE},
+      YGBXXF = #{record.ygbxxf,jdbcType=DOUBLE},
+      YGXXXF = #{record.ygxxxf,jdbcType=DOUBLE},
+      KSDFSJ = #{record.ksdfsj,jdbcType=TIMESTAMP},
+      MNKSSJ = #{record.mnkssj,jdbcType=TIMESTAMP},
+      BXZD1 = #{record.bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{record.bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{record.bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{record.bxzd4,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="app.core.po.Grade" >
+    update grade
+    <set >
+      <if test="ygzh != null" >
+        YGZH = #{ygzh,jdbcType=VARCHAR},
+      </if>
+      <if test="ygzxf != null" >
+        YGZXF = #{ygzxf,jdbcType=DOUBLE},
+      </if>
+      <if test="ygbxxf != null" >
+        YGBXXF = #{ygbxxf,jdbcType=DOUBLE},
+      </if>
+      <if test="ygxxxf != null" >
+        YGXXXF = #{ygxxxf,jdbcType=DOUBLE},
+      </if>
+      <if test="ksdfsj != null" >
+        KSDFSJ = #{ksdfsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mnkssj != null" >
+        MNKSSJ = #{mnkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bxzd1 != null" >
+        BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd2 != null" >
+        BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd3 != null" >
+        BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      </if>
+      <if test="bxzd4 != null" >
+        BXZD4 = #{bxzd4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="app.core.po.Grade" >
+    update grade
+    set YGZH = #{ygzh,jdbcType=VARCHAR},
+      YGZXF = #{ygzxf,jdbcType=DOUBLE},
+      YGBXXF = #{ygbxxf,jdbcType=DOUBLE},
+      YGXXXF = #{ygxxxf,jdbcType=DOUBLE},
+      KSDFSJ = #{ksdfsj,jdbcType=TIMESTAMP},
+      MNKSSJ = #{mnkssj,jdbcType=TIMESTAMP},
+      BXZD1 = #{bxzd1,jdbcType=VARCHAR},
+      BXZD2 = #{bxzd2,jdbcType=VARCHAR},
+      BXZD3 = #{bxzd3,jdbcType=VARCHAR},
+      BXZD4 = #{bxzd4,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- author by Jaylin_Yang 2019.6.26 -->
+  
+  <resultMap id="ClassResultMap" type="app.core.po.Grade">
+ 		<id property="id" column="id"/>
+			<result column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+			<result column="YGZXF" property="ygzxf" jdbcType="DOUBLE" />
+		    <result column="YGBXXF" property="ygbxxf" jdbcType="DOUBLE" />
+		    <result column="YGXXXF" property="ygxxxf" jdbcType="DOUBLE" />
+		    <result column="KSDFSJ" property="ksdfsj" jdbcType="TIMESTAMP" />
+		    <result column="MNKSSJ" property="mnkssj" jdbcType="TIMESTAMP" />
+		    <result column="BXZD1" property="bxzd1" jdbcType="VARCHAR" />
+		    <result column="BXZD2" property="bxzd2" jdbcType="VARCHAR" />
+		    <result column="BXZD3" property="bxzd3" jdbcType="VARCHAR" />
+	    <association property="department" javaType="app.core.po.Department">
+			<id property="id" column="id"/>
+			<result column="ID" property="id" jdbcType="INTEGER" />
+			<result column="BMBH" property="bmbh" jdbcType="VARCHAR" />
+		    <result column="BMMC" property="bmmc" jdbcType="VARCHAR" />
+		    <result column="ZFYQ" property="zfyq" jdbcType="DOUBLE" />
+		    <result column="BXXFYQ" property="bxxfyq" jdbcType="DOUBLE" />
+		    <result column="XXXFYQ" property="xxxfyq" jdbcType="DOUBLE" />
+		</association>
+		<association property="courseOnsiteCredit" javaType="app.core.po.CourseOnsiteCredit">
+			<id property="id" column="id"/>
+			<result column="ID" property="id" jdbcType="INTEGER" />
+			<result column="XYZH" property="xyzh" jdbcType="VARCHAR" />
+		    <result column="XXKCMC" property="xxkcmc" jdbcType="VARCHAR" />
+		    <result column="XXKCXF" property="xxkcxf" jdbcType="VARCHAR" />
+		</association>
+ </resultMap>
+ 
+ 
+ 
+ <select id="searchYearEnd" parameterType="java.lang.String" resultMap="ClassResultMap" >
+    select * from grade g,department d,course_onsite_credit c 
+    <where>
+    	<if test="ygzh!=null and ygzh!=''">
+   		 (  g.bxzd2 like CONCAT(CONCAT('%',#{ygzh}),'%') or g.ygzh like CONCAT(CONCAT('%',#{ygzh}),'%') 
+			or d.xxxfyq like CONCAT(CONCAT('%',#{ygzh}),'%') or d.zfyq like CONCAT(CONCAT('%',#{ygzh}),'%')
+			or g.ygzxf like CONCAT(CONCAT('%',#{ygzh}),'%') or c.xxkcxf like CONCAT(CONCAT('%',#{ygzh}),'%')
+			or g.ygbxxf like CONCAT(CONCAT('%',#{ygzh}),'%') or g.bxzd3 like CONCAT(CONCAT('%',#{ygzh}),'%'))
+    	</if>
+    </where>
+ </select>
+ <!-- author by Jaylin 2019.7.10 -->
+ <select id="selectGradeByYgzh" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select * from grade where ygzh=#{ygzh} 
+ </select>
+ 
+ <!-- author by Jaylin_Yang 2019.7.11 -->
+  
+  <resultMap id="OtherResultMap" type="app.core.po.Grade">
+ 		<id property="id" column="id"/>
+			<result column="YGZH" property="ygzh" jdbcType="VARCHAR" />
+			<result column="YGZXF" property="ygzxf" jdbcType="DOUBLE" />
+		    <result column="YGBXXF" property="ygbxxf" jdbcType="DOUBLE" />
+		    <result column="YGXXXF" property="ygxxxf" jdbcType="DOUBLE" />
+		    <result column="KSDFSJ" property="ksdfsj" jdbcType="TIMESTAMP" />
+		    <result column="MNKSSJ" property="mnkssj" jdbcType="TIMESTAMP" />
+		    <result column="BXZD1" property="bxzd1" jdbcType="VARCHAR" />
+		    <result column="BXZD2" property="bxzd2" jdbcType="VARCHAR" />
+		    <result column="BXZD3" property="bxzd3" jdbcType="VARCHAR" />
+	    <association property="department" javaType="app.core.po.Department">
+			<id property="id" column="id"/>
+			<result column="ID" property="id" jdbcType="INTEGER" />
+			<result column="BMBH" property="bmbh" jdbcType="VARCHAR" />
+		    <result column="BMMC" property="bmmc" jdbcType="VARCHAR" />
+		    <result column="ZFYQ" property="zfyq" jdbcType="DOUBLE" />
+		    <result column="BXXFYQ" property="bxxfyq" jdbcType="DOUBLE" />
+		    <result column="XXXFYQ" property="xxxfyq" jdbcType="DOUBLE" />
+		</association>
+ </resultMap>
+ 
+ <select id="selectAllFrom3Table" resultMap="OtherResultMap" >
+    select * from grade g , department d
+    where g.bxzd1 = d.bmbh 
+ </select>
+ 
+</mapper>

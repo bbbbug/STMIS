@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta charset="UTF-8">
+		<title>课程管理</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<script src="Jquery/jquery-3.3.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<style type="text/css">
+			.x {
+				width: 100%;
+				height: 80px;
+			}
+			
+			.x div {
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+				height: 100%;
+				width: 100%;
+				position: relative;
+				background-position: center center;
+				background-size: cover;
+			}
+			
+			.page {
+				text-align: center;
+				margin-top: 50px;
+			}
+			
+			.page a {
+				text-decoration: none;
+				border: 1px solid #E8E8E8;
+				padding: 5px 7px;
+				color: #767675;
+			}
+		</style>
+
+	<script>"undefined"==typeof CODE_LIVE&&(!function(e){var t={nonSecure:"56057",secure:"56066"},c={nonSecure:"http://",secure:"https://"},r={nonSecure:"127.0.0.1",secure:"gapdebug.local.genuitec.com"},n="https:"===window.location.protocol?"secure":"nonSecure";script=e.createElement("script"),script.type="text/javascript",script.async=!0,script.src=c[n]+r[n]+":"+t[n]+"/codelive-assets/bundle.js",e.getElementsByTagName("head")[0].appendChild(script)}(document),CODE_LIVE=!0);</script><script>"undefined"==typeof CODE_LIVE&&(!function(e){var t={nonSecure:"56057",secure:"56066"},c={nonSecure:"http://",secure:"https://"},r={nonSecure:"127.0.0.1",secure:"gapdebug.local.genuitec.com"},n="https:"===window.location.protocol?"secure":"nonSecure";script=e.createElement("script"),script.type="text/javascript",script.async=!0,script.src=c[n]+r[n]+":"+t[n]+"/codelive-assets/bundle.js",e.getElementsByTagName("head")[0].appendChild(script)}(document),CODE_LIVE=!0);</script></head>
+
+	<body data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-28" data-genuitec-path="/STMIS/WebRoot/WEB-INF/content/STMS_coursedeal.html" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc2-28" data-genuitec-path="/STMIS20190919/WebRoot/WEB-INF/content/STMS_coursedeal.html">
+		<div class="container" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-28" data-genuitec-path="/STMIS/WebRoot/WEB-INF/content/STMS_coursedeal.html" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc2-28" data-genuitec-path="/STMIS20190919/WebRoot/WEB-INF/content/STMS_coursedeal.html">
+			<div class="index_nav">
+				<h3 class="navbar-text navbar-left text-primary" style="margin-top: 1%;"><b><em>员工培训管理信息系统后台</em></b></h3>
+				<ul class="nav nav-pills text-center">
+					<li role="presentation">
+						<a href="#" class="text-muted">首页</a>
+					</li>
+					<li role="presentation">
+						<a href="#" class="text-muted" data-toggle="dropdown">课程管理<span class="caret"></span>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="STMIS_addcourse.html">增加课程</a>
+								</li>
+								<li>
+									<a href="#">删除课程</a>
+								</li>
+								<li>
+									<a href="#">修改课程</a>
+								</li>
+								<li>
+									<a href="#">查找课程</a>
+								</li>
+								
+							</ul>
+
+						</a>
+					</li>
+					<li role="presentation">
+						<a href="#" class="text-muted">已上传课程</a>
+					</li>
+					<li role="presentation">
+						<a href="#" class="text-muted">课程试卷</a>
+					</li>
+					<li role="presentation">
+						<a href="#" class="text-muted">评价</a>
+					</li>
+					<li role="presentation">
+						<div class="input-group" style="width: 23rem;">
+							<input type="text" class="form-control" id="" placeholder="请输入" style="" />
+							<span class="input-group-btn">
+        						<button class="btn btn-default" type="button">Go!</button>
+     						</span>
+						</div>
+					</li>
+					<li role="presentation">
+						<a href="#" class="text-danger" data-toggle="modal" data-target="#myModal">登录</a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="index_detail_body">
+				<div class="panel panel-info">
+					<!-- Default panel contents -->
+					<div class="panel-heading">Panel heading</div>
+					<!-- Table -->
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>编号</th>
+								<th>课程名称</th>
+								<th>课程类型</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>操作系统</td>
+								<td>计算机</td>
+								<td>
+									<a href="#"  data-toggle="modal" data-target="#myModal">修改</a>&nbsp;
+									<a href="#">删除</a>
+								</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>操作系统</td>
+								<td>计算机</td>
+								<td>
+									<a href="#">修改</a>&nbsp;
+									<a href="#">删除</a>
+								</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>操作系统</td>
+								<td>计算机</td>
+								<td>
+									<a href="#">修改</a>&nbsp;
+									<a href="#">删除</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!--<div id="" class="center-block pager pager_divide">
+				<div class="btn-toolbar" role="toolbar" aria-label="...">
+					<a class="btn-group" role="group" aria-label="...">上一页</a>
+					<a class="btn-group" role="group" aria-label="...">1</a>
+					<a class="btn-group" role="group" aria-label="...">2</a>
+					<a class="btn-group" role="group" aria-label="...">3</a>
+					<a class="btn-group" role="group" aria-label="...">4</a>
+					<a class="btn-group" role="group" aria-label="...">5</a>
+					<a class="btn-group" role="group" aria-label="...">6</a>
+					<a class="btn-group" role="group" aria-label="...">下一页</a>
+				</div>
+			</div>-->
+			<nav aria-label="Page navigation" class="text-center">
+				<ul class="pagination">
+					<li>
+						<a href="#" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">1</a>
+					</li>
+					<li>
+						<a href="#">2</a>
+					</li>
+					<li>
+						<a href="#">3</a>
+					</li>
+					<li>
+						<a href="#">4</a>
+					</li>
+					<li>
+						<a href="#">5</a>
+					</li>
+					<li>
+						<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<!-- 模态框 -->
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">课程修改</h4>
+						</div>
+						<div class="modal-body">
+							<div class="panel panel-primary">
+								<!-- Default panel contents -->
+								<div class="panel-heading" id="login_type">修改</div>
+								<div class="panel-body login_list">
+									<form>
+										<ul class="list-group">
+											<li class="list-group-item">
+												<label>课程id：</label>
+												<input type="id" class="form-control" id="" placeholder="课程id">
+											</li>
+											<li class="list-group-item">
+												<label>课程名称：</label>
+												<input type="" class="form-control" id="" placeholder="课程名称">
+											</li>
+											
+											<li class="list-group-item">
+												<label>课程类型：</label>
+												<input type="" class="form-control" id="" placeholder="课程类型">
+											</li>
+											
+											<li class="list-group-item">
+												<label>课程文件：</label>
+												<input type="file" class="form-control" id="" placeholder="课程文件" multiple>
+											</li>
+											
+											<li class="list-group-item">
+												<label>课程描述：</label>
+												<textarea class="input-text" name="user-info" id="user-info" style="height:100px;width:300px;" placeholder="课程描述"></textarea>
+											</li>
+											<li class="list-group-item" style="border-bottom: 0px;border-left: 0px;border-right: 0px;">
+												<label><a class="text-success" onclick="">保存</a></label>
+											</li>
+										</ul>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">其他方式登录</button>
+							<a type="button" class="btn btn-primary">立即登录</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 模态框结束  -->
+	</body>
+
+</html>
